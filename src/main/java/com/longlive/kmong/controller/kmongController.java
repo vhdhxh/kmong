@@ -10,5 +10,4 @@ public class kmongController {
     public String main () {
         return "main";
     }
-
 }

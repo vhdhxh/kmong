@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--회원가입-->
+<mapper namespace="com.longlive.kmong.DAO.User">
+   <insert id="insertUser">
+       INSERT INTO USER
+       (user_id,
+       user_password,
+       user_name,
+       user_address,
+       user_phonenum,
+       user_gender,
+       user_nickname)
+       values (
+       #{user_id},
+       #{user_password},
+       #{user_name},
+       #{user_address},
+       #{user_phonenum},
+       #{user_gender},
+       #{user_nickname})
+   </insert>
+</mapper>
