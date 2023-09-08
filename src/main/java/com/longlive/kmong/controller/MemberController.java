@@ -12,14 +12,24 @@ public class MemberController {
 @Autowired
 private UserService userService;
 
+    //회원가입 폼 이동
     @GetMapping("/sign-up")
      public String signup () {
-        return "sign-up"
+        System.out.println("dd");
+        return "sign-up";
     }
     //회원가입
     @PostMapping("/register")
     public void register(UserDTO dto) {
            userService.insertUser(dto);
     }
+
+    //로그인 폼 이동
+    @GetMapping("/log-in")
+    public String login() {
+        return "log-in";
+    }
+
+    //로그인
 
 }
