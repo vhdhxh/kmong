@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
-public class MemberController {
+public class UserController {
 @Autowired
 private UserService userService;
 
@@ -20,16 +20,23 @@ private UserService userService;
     }
     //회원가입
     @PostMapping("/register")
-    public void register(UserDTO dto) {
+    public String register(UserDTO dto) {
+        System.out.println(dto);
            userService.insertUser(dto);
+           return "/";
     }
 
     //로그인 폼 이동
-    @GetMapping("/log-in")
+    @GetMapping("/loginForm")
     public String login() {
-        return "log-in";
+        return "loginForm";
     }
 
     //로그인
+    @PostMapping("/submit")
+    public String submit (UserDTO dto) {
+
+        return "main";
+    }
 
 }

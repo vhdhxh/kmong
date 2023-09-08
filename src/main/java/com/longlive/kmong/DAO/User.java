@@ -7,4 +7,5 @@ import org.apache.ibatis.annotations.Mapper;
 public interface User {
 
     public void insertUser(UserDTO dto);
+    public void getUser(UserDTO dto);
 }

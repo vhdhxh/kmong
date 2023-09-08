@@ -7,19 +7,27 @@
    <insert id="insertUser">
        INSERT INTO USER
        (user_id,
+       user_email,
        user_password,
        user_name,
        user_address,
        user_phonenum,
-       user_gender,
-       user_nickname)
+       user_gender
+       )
        values (
-       #{user_id},
+       null,
+       #{user_email},
        #{user_password},
        #{user_name},
        #{user_address},
        #{user_phonenum},
-       #{user_gender},
-       #{user_nickname})
+       #{user_gender})
    </insert>
+
+    <select id="getUser">
+        select *
+        from user
+        where user_id = #{user_id} and user_password = #{user_password}
+
+    </select>
 </mapper>

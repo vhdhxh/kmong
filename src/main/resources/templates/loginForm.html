@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{fragments/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+  #login {
+  display: flex;
+  justify-content:center;
+  }
+  .btn btn-primary {
+  width:100%;
+  }
+</style>
+</head>
+
+<body layout:fragment="content">
+<!--로그인 폼-->
+ <div id="container">
+
+     <div id="login">
+         <h2>로그인</h2>
+     </div>
+   <div class="d-flex justify-content-center">
+
+     <form>
+       <div class="mb-3">
+         <label for="username" class="form-label">이메일</label>
+         <input type="email" class="form-control" id="username" placeholder="example@soomgo.com" name="user_email">
+       </div>
+       <div class="mb-3">
+         <label for="password" class="form-label">비밀번호</label>
+         <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력해주세요">
+       </div>
+       <button type= "submit" class= "btn btn-primary" style="width:100%;">로그인</button>
+     </form>
+   </div>
+
+ </div>
+
+</body>
+</html>

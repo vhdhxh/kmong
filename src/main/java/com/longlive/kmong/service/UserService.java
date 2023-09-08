@@ -10,9 +10,13 @@ public class UserService {
     @Autowired
     User user;
 
-
-    public void insertUser(UserDTO dto) { // 회원가입
-
+    // 회원가입
+    public void insertUser(UserDTO dto) {
         user.insertUser(dto);
+    }
+
+    // 로그인
+    public void getUser(UserDTO dto) {
+        user.getUser(dto);
     }
 }
