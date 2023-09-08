@@ -12,6 +12,10 @@ public class MemberController {
 @Autowired
 private UserService userService;
 
+    @GetMapping("/sign-up")
+     public String signup () {
+        return "sign-up"
+    }
     //회원가입
     @PostMapping("/register")
     public void register(UserDTO dto) {
