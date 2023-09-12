@@ -3,6 +3,7 @@ package com.longlive.kmong.controller;
 import com.longlive.kmong.DTO.UserDTO;
 import com.longlive.kmong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,6 +12,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class UserController {
 @Autowired
 private UserService userService;
+
+@Autowired
+   private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     //회원가입 폼 이동
     @GetMapping("/sign-up")
@@ -21,14 +25,18 @@ private UserService userService;
     //회원가입
     @PostMapping("/register")
     public String register(UserDTO dto) {
-        System.out.println(dto);
-           userService.insertUser(dto);
+
+         String rawPassword = dto.getUser_password();   //회원가입시 입력받은 비밀번호를 저장
+         String encPassword = bCryptPasswordEncoder.encode(rawPassword); //저장한 비밀번호를 암호화
+         dto.setUser_password(encPassword);
+        userService.insertUser(dto);
            return "/";
     }
 
     //로그인 폼 이동
     @GetMapping("/loginForm")
     public String login() {
+        System.out.println(userService.getUser());
         return "loginForm";
     }
 

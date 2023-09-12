@@ -7,5 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 public interface User {
 
     public void insertUser(UserDTO dto);
-    public void getUser(UserDTO dto);
+    public UserDTO selectUserEmail(String user_email);
+    public void selectUserEmail2(String user_email);
+
 }

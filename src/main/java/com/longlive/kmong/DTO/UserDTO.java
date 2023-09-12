@@ -7,7 +7,7 @@ public class UserDTO {
 
    private int user_id;
    private String user_email;
-   private int user_password;
+   private String user_password;
    private String user_name;
    private String user_address;
    private int user_phonenum;

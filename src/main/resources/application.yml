@@ -1,7 +1,7 @@
 mybatis:
   configuration:
     multiple-result-sets-enabled: false
-    map-underscore-to-camel-case: true
+    map-underscore-to-camel-case: false
     call-setters-on-nulls: true
     jdbc-type-for-null: varchar
     default-fetch-size: 500

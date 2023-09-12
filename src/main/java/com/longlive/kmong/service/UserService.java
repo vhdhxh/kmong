@@ -16,7 +16,7 @@ public class UserService {
     }
 
     // 로그인
-    public void getUser(UserDTO dto) {
-        user.getUser(dto);
+    public UserDTO getUser() {
+        return user.selectUserEmail("vhdhxh@naver.com");
     }
 }

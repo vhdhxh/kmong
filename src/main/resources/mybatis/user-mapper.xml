@@ -24,10 +24,10 @@
        #{user_gender})
    </insert>
 
-    <select id="getUser">
+    <select id="selectUserEmail" resultType="com.longlive.kmong.DTO.UserDTO">
         select *
         from user
-        where user_id = #{user_id} and user_password = #{user_password}
+        where user_email = #{user_email}
 
     </select>
 </mapper>
