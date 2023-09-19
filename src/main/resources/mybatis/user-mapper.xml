@@ -12,7 +12,9 @@
        user_name,
        user_address,
        user_phonenum,
-       user_gender
+       user_gender,
+       provider,
+       providerId
        )
        values (
        null,
@@ -21,7 +23,9 @@
        #{user_name},
        #{user_address},
        #{user_phonenum},
-       #{user_gender})
+       #{user_gender},
+       #{provider},
+       #{providerId})
    </insert>
 
     <select id="selectUserEmail" resultType="com.longlive.kmong.DTO.UserDTO">

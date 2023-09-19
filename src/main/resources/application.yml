@@ -8,14 +8,20 @@ mybatis:
   mapper-locations:
     classpath:mybatis/*.xml
 
-
-
-
 spring:
    datasource:
      url: jdbc:mysql://127.0.0.1:3306/new?useUnicode=true&serverTimezone=Asia/Seoul
      username: root
      password: u1234
+
+   security:
+      oauth2:
+        client:
+          registration:
+           google:
+            client-id: 566151186767-k6a9rlhmmnsv79fgjavcq0nbtg9to5bm.apps.googleusercontent.com
+            client-secret: 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
+            scope: email,profile
 
 
 
