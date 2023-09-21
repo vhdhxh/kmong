@@ -23,16 +23,17 @@ spring:
             client-secret: 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
             scope: email,profile
            kakao:
-             client-id: 2ff1123942d1ede953a97b2a4eb8ca3a
-             client-secret: zVPBMSLJknNjvEqalESywxZvyahItYJ7
-             redirect-uri: http://localhost:8080/login/oauth2/code/kakao
-             authorization-grant-type: authorization_code
-             client-authentication-method: POST
-             client-name: Kakao
-             scope:
+            client-id: 2ff1123942d1ede953a97b2a4eb8ca3a
+            client-secret: zVPBMSLJknNjvEqalESywxZvyahItYJ7
+            redirect-uri: http://localhost:8080/login/oauth2/code/kakao
+            authorization-grant-type: authorization_code
+            client-authentication-method: POST
+            client-name: Kakao
+            scope:
                  - profile_nickname
                  - account_email
-                 - gender
+
+
            naver:
             client-id: wViGT9VINjbT6DEXW8Mb
             client-secret: rq45Vd09qB

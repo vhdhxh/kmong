@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{fragments/layout}">
+
 <head>
+    <link rel="stylesheet" href="css/loginForm.css"/>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
@@ -35,11 +37,12 @@
        </div>
        <button type= "submit" class= "btn btn-primary" style="width:100%;">로그인</button>
      </form>
-       <a href="/oauth2/authorization/google">구글로그인</a>
-       <a href="/oauth2/authorization/kakao">카카오로그인</a>
-       <a href="/oauth2/authorization/naver">네이버로그인</a>
    </div>
-
+     <div id="oauth-login" class="d-flex justify-content-center">
+     <a href="/oauth2/authorization/google"><img src="/img/oauth-google.png"></a>
+     <a href="/oauth2/authorization/kakao" id="kakao"><img src="img/oauth-kakao.png"></a>
+     <a href="/oauth2/authorization/naver"><img src="../img/oauth-naver.png"></a>
+         </div>
  </div>
 
 </body>
