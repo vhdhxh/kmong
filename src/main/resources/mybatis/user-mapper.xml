@@ -34,4 +34,10 @@
         where user_email = #{user_email}
 
     </select>
+
+    <select id="selectUserAddress">
+        select user_address
+        from user
+
+    </select>
 </mapper>

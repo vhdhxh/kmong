@@ -5,6 +5,8 @@ import com.longlive.kmong.DTO.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class UserService {
     @Autowired
@@ -18,5 +20,9 @@ public class UserService {
     // 로그인
     public UserDTO getUser() {
         return user.selectUserEmail("vhdhxh@naver.com");
+    }
+
+    public List<UserDTO> getAddress() {
+        return user.selectUserAddress();
     }
 }
