@@ -1,8 +1,11 @@
 package com.longlive.kmong.controller;
 
 import com.longlive.kmong.DTO.UserDTO;
+import com.longlive.kmong.config.auth.PrincipalDetails;
 import com.longlive.kmong.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +19,8 @@ public class kmongController {
     UserService userService;
 
     @GetMapping("/")
-    public String main () {
+    public String main (@AuthenticationPrincipal PrincipalDetails principalDetails , Model model) {
+        model.addAttribute("user", principalDetails.getDto());
         return "main";
     }
     @GetMapping("/map")
@@ -27,6 +31,18 @@ public class kmongController {
         return "map";
     }
 
+//    @GetMapping("/chat")
+//    public String chat(@AuthenticationPrincipal PrincipalDetails principalDetails , Model model) {
+//       model.addAttribute("user", principalDetails.getDto());
+//        return"chat";
+//    }
+@GetMapping({"/chat", "/chat/{roomId}/{nickname}"})
+public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+    model.addAttribute("user", principalDetails.getDto());
+    System.out.println(principalDetails.getDto().getUser_id());
+    return "/chat";
+
+}
 
 
 }

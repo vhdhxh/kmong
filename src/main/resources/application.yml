@@ -5,6 +5,7 @@ mybatis:
     call-setters-on-nulls: true
     jdbc-type-for-null: varchar
     default-fetch-size: 500
+  type-aliases-package: com.longlive.kmong.DTO
   mapper-locations:
     classpath:mybatis/*.xml
 

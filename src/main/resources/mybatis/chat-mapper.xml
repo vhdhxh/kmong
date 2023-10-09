@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--회원가입-->
+<mapper namespace="com.longlive.kmong.DAO.Chat">
+    <insert id="createRoom2">
+        INSERT INTO USER
+        (room_Id
+        )
+        values (
+        null)
+
+
+
+    </insert>
+    <insert id="createRoom" parameterType="com.longlive.kmong.DTO.RoomDTO">
+        INSERT INTO chatroom
+        (room_Id
+        )
+        values (
+        null)
+        <selectKey resultType="Long" keyProperty="room_Id" keyColumn="room_Id" order="AFTER">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+    </insert>
+
+    <select id="selectUserEmail" resultType="com.longlive.kmong.DTO.RoomDTO">
+        select *
+        from chatroom
+        where room_Id = ${room_Id}
+
+    </select>
+
+<!--    닉네임으로 id 조회-->
+    <select id="selectUserId" resultType="int">
+        select user_Id
+        from user
+        where user_name = #{user_name}
+
+    </select>
+<insert id="saveChat">
+    INSERT INTO message
+    (message_Id,
+    message_content,
+    sender_Id,
+    room_Id,
+    receiver_Id
+
+    )
+    values (
+    null,
+    #{message_content},
+    #{sender_Id},
+    #{room_Id},
+    #{receiver_Id}
+    )
+
+</insert>
+<select id="selectChatRoom" resultType="com.longlive.kmong.DTO.ChatVO">
+    SELECT m.room_Id as roomId, u1.user_name AS receiverNickname, u2.user_name AS senderNickname , message_content as message , send_Date as sendTime
+    FROM message m
+    JOIN user u1 ON m.receiver_id = u1.user_id
+    JOIN user u2 ON m.sender_id = u2.user_id
+    WHERE m.room_id = #{room_id};
+</select>
+
+<select id="selectChatList" resultType="com.longlive.kmong.DTO.ChatListVo">
+<!--    SELECT m.room_Id as roomId, u.user_name AS otherNickname, m.message_content as recentMessage, m.send_date as recentTime-->
+<!--    FROM message m-->
+<!--    JOIN user u ON m.receiver_Id = u.user_Id-->
+<!--    WHERE m.sender_Id = #{user_Id} || m.receiver_Id = #{user_Id};-->
+
+<!--    SELECT m.room_Id AS roomId,-->
+<!--    u.user_name AS otherNickname,-->
+<!--    m.message_content AS recentMessage,-->
+<!--    m.send_date AS recentTime-->
+<!--    FROM message m-->
+<!--    JOIN user u ON m.receiver_Id = u.user_Id-->
+<!--    WHERE (m.sender_Id = #{userId} OR m.receiver_Id = #{userId})-->
+<!--    AND NOT EXISTS (-->
+<!--    SELECT 1 FROM message WHERE room_Id = m.room_Id AND send_date &gt; m.send_date-->
+<!--    )-->
+
+    SELECT m.room_Id AS roomId,
+    CASE WHEN m.sender_Id = #{userId} THEN u.user_name ELSE sender.user_name END AS otherNickname,
+    m.message_content AS recentMessage,
+    m.send_date AS recentTime
+    FROM message m
+    JOIN user u ON m.receiver_Id = u.user_Id
+    LEFT JOIN user sender ON m.sender_Id = sender.user_Id
+    WHERE (m.sender_Id = #{userId} OR m.receiver_Id = #{userId})
+    AND NOT EXISTS (
+    SELECT 1 FROM message WHERE room_Id = m.room_Id AND send_date &gt; m.send_date
+    )
+
+</select>
+
+
+
+</mapper>

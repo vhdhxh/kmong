@@ -12,5 +12,9 @@ public interface User {
     public UserDTO selectUserEmail(String user_email);
     public void selectUserEmail2(String user_email);
     public List<UserDTO> selectUserAddress();
+    public UserDTO selectUserName(String Name);
+    public String selectReceiverNickname(int receive_Id);
+
+
 
 }

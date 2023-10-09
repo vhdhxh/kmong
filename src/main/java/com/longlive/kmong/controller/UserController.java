@@ -84,6 +84,7 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
     public @ResponseBody String user (@AuthenticationPrincipal PrincipalDetails principalDetails,Authentication authentication) {
         System.out.println("principalDetails:" + principalDetails.getDto());
         System.out.println("authentication:" + authentication.getPrincipal());
+        System.out.println(principalDetails.getUsername());
         return "user";
     }
 

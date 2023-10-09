@@ -25,4 +25,8 @@ public class UserService {
     public List<UserDTO> getAddress() {
         return user.selectUserAddress();
     }
+
+    public String selectReceiverNickname(int receive_Id) {
+       return user.selectReceiverNickname(receive_Id);
+    }
 }
