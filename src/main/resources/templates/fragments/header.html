@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <th:block th:fragment="headerFragment">
   <ul class="nav justify-content-center">
@@ -17,16 +17,29 @@
     </li>
 
     <li class="nav-item">
-      <a class="nav-link" href="/chat">채팅</a>
+      <a class="nav-link" href="/chat" sec:authorize="isAuthenticated()">채팅</a>
     </li>
 
 
-      <li class="nav-item">
-        <a class="nav-link" href="/loginForm">로그인</a>
+      <li class="nav-item" sec>
+        <a class="nav-link" href="/loginForm" sec:authorize="isAnonymous()">로그인</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/sign-up">회원가입</a>
+        <a class="nav-link" href="/sign-up" sec:authorize="isAnonymous()">회원가입</a>
       </li>
+
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" sec:authorize="isAuthenticated()">
+        마이페이지
+      </a>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
+        <li><a class="dropdown-item" href="#">Another action</a></li>
+
+      </ul>
+    </li>
+
+
 
 
   </ul>

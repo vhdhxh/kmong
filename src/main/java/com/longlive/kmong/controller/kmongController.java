@@ -19,8 +19,11 @@ public class kmongController {
     UserService userService;
 
     @GetMapping("/")
-    public String main (@AuthenticationPrincipal PrincipalDetails principalDetails , Model model) {
-        model.addAttribute("user", principalDetails.getDto());
+    public String main (@AuthenticationPrincipal PrincipalDetails principalDetails , Model model,Authentication authentication) {
+
+//            model.addAttribute("user", principalDetails.getDto());
+//            principalDetails.getDto().getUser_name()
+
         return "main";
     }
     @GetMapping("/map")

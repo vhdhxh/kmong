@@ -4,6 +4,7 @@
 
 <head>
     <link rel="stylesheet" href="css/loginForm.css"/>
+    <script src="js/loginForm.js"></script>
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
@@ -19,7 +20,7 @@
 
 <body layout:fragment="content">
 <!--로그인 폼-->
- <div id="container">
+ <div id="container" style="padding:5%">
 
      <div id="login">
          <h2>로그인</h2>
@@ -30,6 +31,7 @@
        <div class="mb-3">
          <label for="username" class="form-label">이메일</label>
          <input type="email" name="user_email" class="form-control" id="username" placeholder="example@soomgo.com">
+           <div class="error-message"></div>
        </div>
        <div class="mb-3">
          <label for="password" class="form-label">비밀번호</label>
