@@ -95,6 +95,15 @@
     )
 
 </select>
+    <select id="roomcheck" resultType="com.longlive.kmong.DTO.ChatDTO" parameterType="Map">
+        select message_Id,receiver_Id,room_Id,sender_Id,message_content,send_date as sendDate from message
+        where
+        sender_Id = #{myId} &amp;&amp; receiver_Id = #{yourId}
+        or
+        sender_Id = #{yourId} &amp;&amp; receiver_Id = #{myId}
+        LIMIT 1;
+    </select>
+
 
 
 

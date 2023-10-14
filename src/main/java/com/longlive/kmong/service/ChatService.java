@@ -10,6 +10,8 @@ import com.longlive.kmong.config.auth.PrincipalDetails;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -77,15 +79,30 @@ public class ChatService {
      * 채팅방 만들기
      */
     public Long createRoom(PrincipalDetails principalDetails, String nickname,RoomDTO dto) {
+        //닉네임을 조회해서 나와 그사람이 채팅을 친 이력이 있다면 , 그 채팅방 번호를 리턴하고, 없다면 새로운 채팅방을 만들어 리턴한다.
+        long myId = principalDetails.getDto().getUser_id();
+        long yourId = chat.selectUserId(nickname);
+        //sql mapper 에 2개 이상의 파라미터 전달을 위해 map 사용
+        Map<String,Object> map = new HashMap<String,Object>();
+        map.put("myId", myId);
+        map.put("yourId",yourId);
+        System.out.println(map);
+
+        ChatDTO roomcheck = chat.roomcheck(map);
+        System.out.println("룸체크 : " +roomcheck);
+
+        if (roomcheck!=null)
+            return roomcheck.getRoom_Id();
+        else {
 
 
-      long roomIda = chat.createRoom(dto);
-      long roomId = dto.getRoom_Id();
+            long roomIda = chat.createRoom(dto);
+            long roomId = dto.getRoom_Id();
 
 
-      //  long roomId = chat.selectRoomId("1");
-        return roomId;
-
+            //  long roomId = chat.selectRoomId("1");
+            return roomId;
+        }
     }
 
 

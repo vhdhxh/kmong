@@ -1,10 +1,6 @@
 package com.longlive.kmong.DTO;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 
 import java.sql.Date;
 import java.sql.Timestamp;

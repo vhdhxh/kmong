@@ -7,6 +7,7 @@ import com.longlive.kmong.DTO.RoomDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface Chat {
@@ -21,4 +22,6 @@ public interface Chat {
     public List<ChatVO>selectChatRoom(long roomId);
 
     public List<ChatListVo>selectChatList(long userId);
+
+    public ChatDTO roomcheck(Map<String,Object> map);
 }

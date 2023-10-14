@@ -20,7 +20,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 //import com.longlive.kmong.DTO.ChatDTO;
 
 
@@ -65,6 +68,8 @@ public class ChatRoomController {
     public ResponseEntity createRoom(
             @AuthenticationPrincipal PrincipalDetails principalDetails,
             @PathVariable String nickname, RoomDTO dto) {
+
+
         Long roomId = chatService.createRoom(principalDetails, nickname, dto);
         //만들어진 채팅방 roomId 를  매개변수에 넣어서 채팅방 인원들을 추가한다.
         System.out.println(roomId);
