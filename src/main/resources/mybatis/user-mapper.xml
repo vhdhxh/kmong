@@ -48,4 +48,13 @@
 
 
     </select>
+
+<!-- 이메일 중복검사-->
+<select id="CheckEmailValidation" resultType="boolean">
+    select IF(COUNT(*) = 1, 1, 0)
+    from user
+    where user_email= #{user_email};
+</select>
+
+
 </mapper>

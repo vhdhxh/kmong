@@ -14,7 +14,7 @@ public interface User {
     public List<UserDTO> selectUserAddress();
     public UserDTO selectUserName(String Name);
     public String selectReceiverNickname(int receive_Id);
-
+    public boolean CheckEmailValidation(String user_email);
 
 
 }

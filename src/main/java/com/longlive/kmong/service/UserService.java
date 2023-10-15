@@ -29,4 +29,10 @@ public class UserService {
     public String selectReceiverNickname(int receive_Id) {
        return user.selectReceiverNickname(receive_Id);
     }
+
+    public boolean CheckEmailValidation(String user_email) {
+        return user.CheckEmailValidation(user_email);
+    }
+
+
 }

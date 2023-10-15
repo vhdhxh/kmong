@@ -3,6 +3,8 @@ package com.longlive.kmong.controller;
 import com.longlive.kmong.DTO.UserDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
 import com.longlive.kmong.service.UserService;
+import com.longlive.kmong.validator.CheckEmailValidator;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -14,10 +16,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.HashMap;
@@ -26,13 +26,18 @@ import java.util.Map;
 
 
 @Controller
+@RequiredArgsConstructor
 public class UserController {
 @Autowired
 private UserService userService;
 
 @Autowired
    private BCryptPasswordEncoder bCryptPasswordEncoder;
-
+   private final CheckEmailValidator checkEmailValidator;
+    @InitBinder
+    public void validatorBinder(WebDataBinder binder) {
+        binder.addValidators(checkEmailValidator);
+    }
 @GetMapping("/test/login")
 public @ResponseBody String testLogin(Authentication authentication //의존성주입
         , @AuthenticationPrincipal PrincipalDetails userDetails) {
