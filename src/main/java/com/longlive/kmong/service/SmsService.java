@@ -8,7 +8,6 @@ import com.longlive.kmong.DTO.SmsResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -34,8 +33,9 @@ import java.util.Random;
 @RequiredArgsConstructor
 @Service
 public class SmsService {
+    private final RedisUtil redisUtil;
     //휴대폰 인증 번호
-    private final String smsConfirmNum = createSmsKey();
+    private String smsConfirmNum = createSmsKey();
 
 
 
@@ -79,6 +79,8 @@ public class SmsService {
     }
 
     public SmsResponseDto sendSms(MessageDto messageDto) throws JsonProcessingException, RestClientException, URISyntaxException, InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
+        redisUtil.deleteData(smsConfirmNum);  //인증 만료시간 3분전에 인증문자를 추가로 보냈을 경우
+        smsConfirmNum = createSmsKey();       //인증번호 초기화
         String time = Long.toString(System.currentTimeMillis());
 
         HttpHeaders headers = new HttpHeaders();
@@ -95,7 +97,7 @@ public class SmsService {
                 .contentType("COMM")
                 .countryCode("82")
                 .from(phone)
-                .content("[서비스명 테스트닷] 인증번호 [" + smsConfirmNum + "]를 입력해주세요")
+                .content("[프로젝트 테스트입니다] 인증번호 [" + smsConfirmNum + "]를 입력해주세요")
                 .messages(messages)
                 .build();
 
@@ -110,7 +112,10 @@ public class SmsService {
         //restTemplate로 post 요청 보내고 오류가 없으면 202코드 반환
         SmsResponseDto smsResponseDto = restTemplate.postForObject(new URI("https://sens.apigw.ntruss.com/sms/v2/services/"+ serviceId +"/messages"), httpBody, SmsResponseDto.class);
         SmsResponseDto responseDto = new SmsResponseDto(smsConfirmNum);
-        // redisUtil.setDataExpire(smsConfirmNum, messageDto.getTo(), 60 * 3L); // 유효시간 3분
+
+        System.out.println("smsResponseDto ="+smsResponseDto.getSmsConfirmNum());
+        System.out.println("responseDto :" +responseDto.getSmsConfirmNum());
+         redisUtil.setDataExpire(smsConfirmNum, messageDto.getTo(), 60 * 3L); // 유효시간 3분
         return smsResponseDto;
     }
 

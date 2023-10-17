@@ -11,7 +11,7 @@ public class mybatistest {
     @Test
     public void testSelectUserEmail() {
         // 가상의 사용자 이메일
-        String userEmail = "abcd123@naver.com";
+        String userEmail = "abcd123@naver.co";
 
         // 가상의 사용자 정보
         UserDTO expectedUser = new UserDTO();
