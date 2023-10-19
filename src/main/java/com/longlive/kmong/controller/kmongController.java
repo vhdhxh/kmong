@@ -46,6 +46,10 @@ public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails,
     return "/chat";
 
 }
+//@GetMapping("/sms/findpw")
+//    public String findpw (){
+//        return "findpw";
+//}
 
 
 }

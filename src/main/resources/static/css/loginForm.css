@@ -14,3 +14,14 @@ font-size: 1.5rem;
     color: red;
     font-size: 15px;
   }
+.user-find {
+display: flex;
+justify-content: center;
+}
+.id-find {
+padding-right:2rem;
+display: inline;
+}
+.pw-find {
+dsiplay: inline;
+}

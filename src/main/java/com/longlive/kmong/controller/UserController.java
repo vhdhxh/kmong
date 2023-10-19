@@ -60,7 +60,7 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
         return "세션 정보확인하기";
     }
 
-    //회원가입 폼 이동
+//    회원가입 폼 이동
     @GetMapping("/sign-up")
      public String signup (UserDTO userDTO) {
         System.out.println("dd");
@@ -68,14 +68,15 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
     }
     //회원가입
 
-    @GetMapping("register")
-    public void register(UserDTO userDTO) {
-        // 여기서 UserDTO를 받아줘야 회원가입 실패시 그 입력값이 그대로 유지된다.
-        // 즉, 기존에 처음 페이지에 들어갈 때는 userDTO가 parameter로 들어오지 않으니 무시되고,
-        // 회원가입 실패시, UserDTO를 받은 Get요청이 이루어지면서 model을 통해 넘어온 값이 parameter 로 받아지게 된다.
-
-
-    }
+//    @GetMapping("register")
+//    public void register(UserDTO userDTO) {
+//        System.out.println("get");
+//        // 여기서 UserDTO를 받아줘야 회원가입 실패시 그 입력값이 그대로 유지된다.
+//        // 즉, 기존에 처음 페이지에 들어갈 때는 userDTO가 parameter로 들어오지 않으니 무시되고,
+//        // 회원가입 실패시, UserDTO를 받은 Get요청이 이루어지면서 model을 통해 넘어온 값이 parameter 로 받아지게 된다.
+//
+//
+//    }
     @PostMapping("register")
     public String register(@Valid UserDTO userDTO, Errors errors,Model model) {
 

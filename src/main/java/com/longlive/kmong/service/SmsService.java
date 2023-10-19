@@ -119,6 +119,16 @@ public class SmsService {
         return smsResponseDto;
     }
 
+    public String dd(String num) {
+       String phone =  redisUtil.getData(num);
+        System.out.println(phone);
+        if(phone!=null) {
+            return num;
+        } else {
+            return null;
+        }
+    }
+
 
 
     // 인증코드 만들기

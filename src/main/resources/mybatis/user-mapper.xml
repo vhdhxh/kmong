@@ -56,5 +56,23 @@
     where user_email= #{user_email};
 </select>
 
+<!--    문자인증 검증-->
+<select id="SelectByNameAndPhoneAndEmail" resultType="boolean" parameterType="Map">
+    select IF(COUNT(*) = 1, 1, 0)
+    from user
+    where user_email= #{email} and user_name=#{name} and user_phonenum = #{phone};
+
+</select>
+
+    <!--비밀번호변경-->
+    <update id="passwordUpdate" parameterType="Map">
+        update User set
+
+        user_password = #{password}
+
+
+        where user_email = #{email}
+    </update>
+
 
 </mapper>

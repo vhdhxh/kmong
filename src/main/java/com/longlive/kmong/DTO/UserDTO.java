@@ -9,7 +9,7 @@ import javax.validation.constraints.NotBlank;
 public class UserDTO {
 
    @Builder
-   public UserDTO(String user_email, String user_password, String user_name, String user_address, int user_phonenum
+   public UserDTO(String user_email, String user_password, String user_name, String user_address, String user_phonenum
            , String user_gender, String provider, String providerId) {
       this.user_email = user_email;
       this.user_password = user_password;
@@ -30,7 +30,7 @@ public class UserDTO {
    private String user_name;
    private String user_address;
 
-   private int user_phonenum;
+   private String user_phonenum;
    private String user_gender;
 
    private String provider;
