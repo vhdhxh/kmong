@@ -94,7 +94,7 @@ public class SmsController {
         map.put("password",pw);
         map.put("email", email);
         userService.passwordUpdate(map);
-        return "main";
+        return "redirect:/?update=true";
     }
 
 //    @PostMapping("/sms/pwfind")

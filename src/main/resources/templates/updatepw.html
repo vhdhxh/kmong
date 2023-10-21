@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{fragments/layout}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
-<body>
+<body layout:fragment="content">
 <form method="post" action="/pwupdate">
     <div>비밀번호입력</div>
 <input type="text" name="pw">

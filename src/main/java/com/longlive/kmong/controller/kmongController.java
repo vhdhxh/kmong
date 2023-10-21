@@ -23,6 +23,9 @@ public class kmongController {
 
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
+        if (principalDetails != null && principalDetails.getDto() != null) {
+            model.addAttribute("image", principalDetails.getDto().getUser_image());
+        }
 
         return "main";
     }
@@ -45,6 +48,10 @@ public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails,
     System.out.println(principalDetails.getDto().getUser_id());
     return "/chat";
 
+}
+@GetMapping("/uploadtest")
+    public String uploadtest() {
+        return "uploadtest";
 }
 //@GetMapping("/sms/findpw")
 //    public String findpw (){

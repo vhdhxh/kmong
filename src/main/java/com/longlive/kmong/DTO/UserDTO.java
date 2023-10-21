@@ -10,7 +10,7 @@ public class UserDTO {
 
    @Builder
    public UserDTO(String user_email, String user_password, String user_name, String user_address, String user_phonenum
-           , String user_gender, String provider, String providerId) {
+           , String user_gender, String provider, String providerId,String user_image) {
       this.user_email = user_email;
       this.user_password = user_password;
       this.user_name = user_name;
@@ -19,6 +19,8 @@ public class UserDTO {
       this.user_gender = user_gender;
       this.provider = provider;
       this.providerId = providerId;
+      this.user_image = user_image;
+
    }
 
    private int user_id;
@@ -35,5 +37,6 @@ public class UserDTO {
 
    private String provider;
    private String providerId;
+   private String user_image;
 
 }
