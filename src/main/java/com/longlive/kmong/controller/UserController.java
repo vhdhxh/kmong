@@ -6,6 +6,8 @@ import com.longlive.kmong.service.UserService;
 import com.longlive.kmong.validator.CheckEmailValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -133,6 +135,42 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
         System.out.println("authentication:" + authentication.getPrincipal());
         System.out.println(principalDetails.getUsername());
         return "user";
+    }
+
+
+    //이름변경
+    @PostMapping("/user/nameUpdate")
+    @ResponseBody
+    public ResponseEntity nameUpdate(@RequestBody Map<String,String> name, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+        if(userService.selectUserName(name.get("name"))==null) {
+            Map<String, String> map = new HashMap<>();
+            map.put("name", name.get("name"));
+            map.put("email", principalDetails.getDto().getUser_email());
+            userService.updateName(map);
+            principalDetails.getDto().setUser_name(name.get("name"));
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        }
+    }
+
+    //이메일변경
+
+    @PostMapping("/user/emailUpdate")
+    @ResponseBody
+    public ResponseEntity emailUpdate(@RequestBody Map<String,String> email, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+        if(userService.selectUserEmail(email.get("email"))==null) {
+            Map<String, String> map = new HashMap<>();
+            map.put("email1", email.get("email"));
+            map.put("email2", principalDetails.getDto().getUser_email());
+            userService.updateEmail(map);
+
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        }
     }
 
     @GetMapping("/auth/login")

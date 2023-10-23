@@ -23,9 +23,9 @@ public class kmongController {
 
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
-        if (principalDetails != null && principalDetails.getDto() != null) {
-            model.addAttribute("image", principalDetails.getDto().getUser_image());
-        }
+//        if (principalDetails != null && principalDetails.getDto() != null) {
+//            model.addAttribute("image", principalDetails.getDto().getUser_image());
+//        }
 
         return "main";
     }
@@ -49,6 +49,11 @@ public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails,
     return "/chat";
 
 }
+@GetMapping("/user/account-update")
+public String accountupdate() {
+        return "userupdate";
+    }
+
 @GetMapping("/uploadtest")
     public String uploadtest() {
         return "uploadtest";

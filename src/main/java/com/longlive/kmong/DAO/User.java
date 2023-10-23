@@ -11,12 +11,17 @@ public interface User {
 
     public void insertUser(UserDTO dto);
     public UserDTO selectUserEmail(String user_email);
-    public void selectUserEmail2(String user_email);
+    public UserDTO selectUserEmail2(Map<String,String> map);
     public List<UserDTO> selectUserAddress();
     public UserDTO selectUserName(String Name);
     public String selectReceiverNickname(int receive_Id);
     public boolean CheckEmailValidation(String user_email);
     public boolean SelectByNameAndPhoneAndEmail (Map<String,Object> map);
     public void passwordUpdate(Map<String,String> map);
+    public void updateImage(Map<String,String> map);
+
+   public void updateName(Map<String,String> map);
+   public void updateEmail(Map<String,String> map);
+
 
 }

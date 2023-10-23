@@ -28,10 +28,22 @@
        #{providerId})
    </insert>
 
+    <select id="selectUserName" resultType="com.longlive.kmong.DTO.UserDTO">
+        select * from user
+        where user_name = #{name}
+    </select>
+
     <select id="selectUserEmail" resultType="com.longlive.kmong.DTO.UserDTO">
         select *
         from user
         where user_email = #{user_email}
+
+    </select>
+
+    <select id="selectUserEmail2" resultType="Map">
+        select *
+        from user
+        where user_email = #{email}
 
     </select>
 
@@ -73,6 +85,33 @@
 
         where user_email = #{email}
     </update>
+<!--  유저이미지변경-->
+    <update id="updateImage" parameterType="Map">
+        update User set
+
+        user_image = #{image}
+
+
+        where user_email = #{email}
+    </update>
+<!--    유저 이름변경-->
+    <update id="updateName" parameterType="Map">
+        update User set
+        user_name = #{name}
+        where user_email = #{email}
+
+
+    </update>
+<!--    유저 이메일 변경-->
+    <update id="updateEmail" parameterType="Map">
+        update User set
+        user_email = #{email1}
+        where user_email = #{email2}
+
+
+    </update>
+
+
 
 
 </mapper>

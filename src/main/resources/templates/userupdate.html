@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{fragments/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    .btn-upload {
+  width: 150px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid rgb(77,77,77);
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+
+#fileInput {
+  display: none;
+}
+</style>
+</head>
+
+<body layout:fragment="content">
+<label for="fileInput">
+    <div class="btn-upload">프로필 변경</div>
+</label>
+<input type="file" id="fileInput">
+<img id="imagePreview" th:src="'/resources/user/'+${#authentication.getPrincipal().dto.user_image}" style="width:300px;height:300px;">
+
+<div id="nameDiv">이름</div><input type="text" id="nameInput"><a onclick="nameUpdate()">수정</a>
+
+<div id="emailDiv">이메일</div><input type="text" id="emailInput"><a onclick="emailUpdate()">수정</a>
+
+<script>
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            var file = e.target.files[0];
+            var formData = new FormData();
+            formData.append('file', file);
+
+            fetch('/file-upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(result => {
+                console.log(result); // 서버 응답 출력
+
+                if (result.imageUrl) {
+                    showImage(result.imageUrl);
+                    window.location.reload();
+                }
+            })
+            .catch(error => {
+                console.error(error); // 에러 처리
+            });
+        });
+
+        function showImage(url) {
+           var previewDiv = document.getElementById('imagePreview');
+           console.log(previewDiv);
+           previewDiv.src = "/resources/user/" + url;
+        }
+
+
+
+
+         function nameUpdate() {
+  var newName = document.getElementById("nameInput").value;
+
+  // AJAX 요청을 통해 서버에 이름 업데이트 요청을 보냅니다.
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/user/nameUpdate", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        alert("수정되었습니다.");
+        document.getElementById("nameDiv").innerText = newName;
+        window.location.reload();
+      } else {
+        alert("중복된 이름입니다.");
+      }
+    }
+  };
+
+  var data = JSON.stringify({ name: newName });
+  xhr.send(data);
+}
+
+function emailUpdate() {
+  var newEmail = document.getElementById("emailInput").value;
+
+  // AJAX 요청을 통해 서버에 이름 업데이트 요청을 보냅니다.
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/user/emailUpdate", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        alert("수정되었습니다.");
+        document.getElementById("emailDiv").innerText = newEmail;
+        window.location.reload();
+      } else {
+        alert("중복된 이메일입니다.");
+      }
+    }
+  };
+
+  var data = JSON.stringify({ email: newEmail });
+  xhr.send(data);
+}
+    </script>
+
+</body>
+</html>

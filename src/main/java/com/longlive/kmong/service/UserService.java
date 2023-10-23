@@ -49,6 +49,29 @@ public class UserService {
        map.put("password",encPassword1);
        user.passwordUpdate(map);
    }
+    public void updateImage(Map<String,String> map){
+         user.updateImage(map);
+    }
+
+    public void updateName(Map<String,String> map) {
+        user.updateName(map);
+    }
+    public UserDTO selectUserName(String name){
+        return user.selectUserName(name);
+    }
+
+    public UserDTO selectUserEmail(String email){
+        return user.selectUserEmail(email);
+    }
+
+    public UserDTO selectUserEmail2(Map<String,String> email){
+        return user.selectUserEmail2(email);
+    }
+
+    public void updateEmail(Map<String,String> map) {
+         user.updateEmail(map);
+
+    }
 
 
 

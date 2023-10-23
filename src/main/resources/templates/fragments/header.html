@@ -29,7 +29,7 @@
       </li>
 
     <li class="nav-item">
-      <img class="nav-link" href="" sec:authorize="isAuthenticated()" th:src="'resources/user/'+${image}" alt="img" style="height:45px"></img>
+      <img class="nav-link" href="" sec:authorize="isAuthenticated()" th:src="'/resources/user/'+${#authentication.getPrincipal().dto.user_image}" alt="img" style="height:45px"></img>
     </li>
 
     <li class="nav-item dropdown">
@@ -39,7 +39,7 @@
       </a>
       <ul class="dropdown-menu">
         <li><a class="dropdown-item" href="/logout">로그아웃</a></li>
-        <li><a class="dropdown-item" href="#">Another action</a></li>
+        <li><a class="dropdown-item" href="/user/account-update">계정설정</a></li>
 
       </ul>
     </li>

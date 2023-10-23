@@ -2,7 +2,9 @@ package com.longlive.kmong.DTO;
 
 import lombok.*;
 
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Data
 @NoArgsConstructor
@@ -24,9 +26,11 @@ public class UserDTO {
    }
 
    private int user_id;
-   @NotBlank(message = "아이디는 필수 입력사항 입니다.")
+   @NotBlank(message = "이메일는 필수 입력사항 입니다.")
+   @Email(message = "이메일 형식을 맞춰주세요")
    private String user_email;
    @NotBlank(message = "비밀번호는 필수 입력사항 입니다.")
+   @Pattern(regexp = "^(?=.*[a-zA-Z])(?=.*\\\\d)[a-zA-Z\\\\d]{8,16}$" , message = "비밀번호는 영어와 숫자로 포함해서 8~16자리 이내로 입력해주세요")
    private String user_password;
    @NotBlank(message = "이름은 필수 입력사항 입니다.")
    private String user_name;
