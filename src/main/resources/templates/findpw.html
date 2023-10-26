@@ -81,7 +81,7 @@
 
     <div class= "form-row">
         <label for= "verificationCode">인증번호:</label>
-        <input type = "text" id = "verificationCode"name = "verificationCode">
+        <input type = "text" id = "verificationCode" name = "verificationCode">
         <span id='timer'></span> <!-- span 태그 위치 변경 -->
     </div>
 
@@ -90,7 +90,6 @@
 <div th:if="${errorMessage}" class="alert alert-danger">
     <p th:text="${errorMessage}"></p>
 </div>
-</body>
 <script>
     var x; // 전역 변수 추가
 
@@ -162,4 +161,6 @@
     }
     /*]]>*/
 </script>
+</body>
+
 </html>

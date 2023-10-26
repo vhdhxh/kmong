@@ -4,7 +4,7 @@
 
 <!--회원가입-->
 <mapper namespace="com.longlive.kmong.DAO.User">
-   <insert id="insertUser">
+   <insert id="insertUser" parameterType="com.longlive.kmong.DTO.UserDTO">
        INSERT INTO USER
        (user_id,
        user_email,
@@ -26,6 +26,9 @@
        #{user_gender},
        #{provider},
        #{providerId})
+       <selectKey resultType="Long" keyProperty="user_id" keyColumn="user_id" order="AFTER">
+           SELECT LAST_INSERT_ID()
+       </selectKey>
    </insert>
 
     <select id="selectUserName" resultType="com.longlive.kmong.DTO.UserDTO">
@@ -111,7 +114,12 @@
 
     </update>
 
-
+<!-- 유저 패스워드 변경 -->
+    <update id="updatePassword" parameterType="Map">
+        update User set
+        user_password = #{password}
+        where user_email = #{email}
+    </update>
 
 
 </mapper>

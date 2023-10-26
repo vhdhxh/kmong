@@ -17,8 +17,8 @@ public class UserService {
     BCryptPasswordEncoder bCryptPasswordEncoder;
 
     // 회원가입
-    public void insertUser(UserDTO dto) {
-        user.insertUser(dto);
+    public long insertUser(UserDTO dto) {
+       return user.insertUser(dto);
     }
 
     // 로그인
@@ -53,7 +53,7 @@ public class UserService {
          user.updateImage(map);
     }
 
-    public void updateName(Map<String,String> map) {
+    public void updateName(Map<String,Object> map) {
         user.updateName(map);
     }
     public UserDTO selectUserName(String name){
@@ -69,10 +69,18 @@ public class UserService {
     }
 
     public void updateEmail(Map<String,String> map) {
-         user.updateEmail(map);
+        user.updateEmail(map);
+    }
+         public void updatePassword(Map<String,String> map) {
+             String rawPassword1 = map.get("password");
+             String encPassword1 = bCryptPasswordEncoder.encode(rawPassword1);
+             map.put("password",encPassword1);
+
+             user.updatePassword(map);
+        }
+
 
     }
 
 
 
-}

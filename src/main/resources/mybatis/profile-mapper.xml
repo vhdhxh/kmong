@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.longlive.kmong.DAO.Profile">
+    <insert id="insertProfile">
+        INSERT INTO PROFILE
+        (user_id
+
+        )
+        values (
+        #{user_id})
+
+    </insert>
+
+    <select id="selectProfile" resultType="com.longlive.kmong.DTO.ProfileDTO">
+        select * from
+        profile
+        where user_id = ${user_id}
+
+
+    </select>
+
+<!--    프로필이름변경-->
+    <update id="updateName" parameterType="Map">
+        update profile set
+        user_name = #{name}
+        where user_id = #{userid}
+
+    </update>
+<!-- 프로필 대표서비스 변경-->
+    <update id="updateService" parameterType="Map">
+        update profile set
+        profile_service = #{service}
+        where user_id= #{userid}
+    </update>
+
+<!--    프로필 한줄소개 변경-->
+    <update id="updateIntroduce" parameterType="Map">
+        update profile set
+        profile_introduce = #{introduce}
+        where user_id = #{userid}
+    </update>
+
+<!--    프로필 활동지역 변경-->
+    <update id="updateAddress" parameterType="Map">
+        update profile set
+        profile_address = #{address}
+        where user_id = #{userid}
+    </update>
+<!--     프로필 연락가능시간 변경-->
+    <update id="updateTime" parameterType="Map">
+        update profile set
+        profile_time = #{time}
+        where user_id = # {userid}
+
+    </update>
+ </mapper>

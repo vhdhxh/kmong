@@ -33,11 +33,20 @@
     <div class="btn-upload">프로필 변경</div>
 </label>
 <input type="file" id="fileInput">
-<img id="imagePreview" th:src="'/resources/user/'+${#authentication.getPrincipal().dto.user_image}" style="width:300px;height:300px;">
+<img id="imagePreview" th:src="'/resources/user/'+${#authentication.getPrincipal().dto.user_image}" style="width:85px;height:85px;">
 
-<div id="nameDiv">이름</div><input type="text" id="nameInput"><a onclick="nameUpdate()">수정</a>
+<div id="userNameDiv" th:text="${#authentication.getPrincipal().dto.user_name}" onclick="showEditForm()"></div>
+<div id="nameDiv" style="display: none;">이름<input type="text" id="nameInput" th:value="${#authentication.getPrincipal().dto.user_name}"><a onclick="nameUpdate()">수정</a><a onclick="hideEditForm()">취소</a></div>
 
-<div id="emailDiv">이메일</div><input type="text" id="emailInput"><a onclick="emailUpdate()">수정</a>
+
+<div id="userEmailDiv" th:text="${#authentication.getPrincipal().dto.user_email}" onclick="showEditForm2()"></div>
+<div id="emailDiv" style="display: none;">이메일<input type="text" id="emailInput" th:value="${#authentication.getPrincipal().dto.user_email}"><a onclick="emailUpdate()">수정</a><a onclick="hideEditForm2()">취소</a></div>
+
+<div id="userPasswordDiv" onclick="showEditForm3()">********</div>
+<div id="passwordDiv" style="display: none;">비밀번호<input type="text" id="passwordInput"><a onclick="passwordUpdate()">수정</a><a onclick="hideEditForm3()">취소</a></div>
+
+
+
 
 <script>
 
@@ -120,6 +129,61 @@ function emailUpdate() {
   var data = JSON.stringify({ email: newEmail });
   xhr.send(data);
 }
+
+function passwordUpdate() {
+  var newPassword = document.getElementById("passwordInput").value;
+
+  // AJAX 요청을 통해 서버에 이름 업데이트 요청을 보냅니다.
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "/user/passwordUpdate", true);
+  xhr.setRequestHeader("Content-Type", "application/json");
+
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        alert("수정되었습니다.");
+        document.getElementById("passwordDiv").innerText = newPassword;
+        window.location.reload();
+      } else {
+        alert("중복된 이메일입니다.");
+      }
+    }
+  };
+
+  var data = JSON.stringify({ password: newPassword });
+  xhr.send(data);
+}
+
+
+function showEditForm() {
+      document.getElementById("userNameDiv").style.display = "none";
+      document.getElementById("nameDiv").style.display = "block";
+    }
+
+    function hideEditForm() {
+      document.getElementById("userNameDiv").style.display = "block";
+      document.getElementById("nameDiv").style.display = "none";
+    }
+
+function showEditForm2() {
+      document.getElementById("userEmailDiv").style.display = "none";
+      document.getElementById("emailDiv").style.display = "block";
+    }
+
+    function hideEditForm2() {
+      document.getElementById("userEmailDiv").style.display = "block";
+      document.getElementById("emailDiv").style.display = "none";
+    }
+
+    function showEditForm3() {
+      document.getElementById("userPasswordDiv").style.display = "none";
+      document.getElementById("passwordDiv").style.display = "block";
+    }
+
+    function hideEditForm3() {
+      document.getElementById("userPasswordDiv").style.display = "block";
+      document.getElementById("passwordDiv").style.display = "none";
+    }
     </script>
 
 </body>

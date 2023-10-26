@@ -9,7 +9,7 @@ import java.util.Map;
 @Mapper
 public interface User {
 
-    public void insertUser(UserDTO dto);
+    public long insertUser(UserDTO dto);
     public UserDTO selectUserEmail(String user_email);
     public UserDTO selectUserEmail2(Map<String,String> map);
     public List<UserDTO> selectUserAddress();
@@ -20,8 +20,10 @@ public interface User {
     public void passwordUpdate(Map<String,String> map);
     public void updateImage(Map<String,String> map);
 
-   public void updateName(Map<String,String> map);
+   public void updateName(Map<String,Object> map);
    public void updateEmail(Map<String,String> map);
+    public void updatePassword(Map<String,String> map);
+    public void updateAddress(Map<String,Object> map );
 
 
 }

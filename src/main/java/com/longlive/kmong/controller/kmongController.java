@@ -1,8 +1,12 @@
 package com.longlive.kmong.controller;
 
+import com.longlive.kmong.DAO.Profile;
+import com.longlive.kmong.DTO.ProfileDTO;
 import com.longlive.kmong.DTO.UserDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
+import com.longlive.kmong.service.ProfileService;
 import com.longlive.kmong.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -11,12 +15,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
-
+@RequiredArgsConstructor
 @Controller
 public class kmongController {
 
-    @Autowired
-    UserService userService;
+   private final ProfileService profileService;
+   private final UserService userService;
 
     @GetMapping("/")
     public String main (@AuthenticationPrincipal PrincipalDetails principalDetails , Model model,Authentication authentication) {
@@ -52,6 +56,13 @@ public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails,
 @GetMapping("/user/account-update")
 public String accountupdate() {
         return "userupdate";
+    }
+
+@GetMapping("/user/profile")
+public String profile(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
+    ProfileDTO profileDTO = profileService.selectProfile(principalDetails.getDto().getUser_id());
+        model.addAttribute("profile",profileDTO);
+        return "profile";
     }
 
 @GetMapping("/uploadtest")

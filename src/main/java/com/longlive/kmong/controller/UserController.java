@@ -2,6 +2,7 @@ package com.longlive.kmong.controller;
 
 import com.longlive.kmong.DTO.UserDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
+import com.longlive.kmong.service.ProfileService;
 import com.longlive.kmong.service.UserService;
 import com.longlive.kmong.validator.CheckEmailValidator;
 import lombok.RequiredArgsConstructor;
@@ -36,6 +37,7 @@ private UserService userService;
 @Autowired
    private BCryptPasswordEncoder bCryptPasswordEncoder;
    private final CheckEmailValidator checkEmailValidator;
+   private final ProfileService profileService;
     @InitBinder
     public void validatorBinder(WebDataBinder binder) {
         binder.addValidators(checkEmailValidator);
@@ -109,7 +111,8 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
          String rawPassword = userDTO.getUser_password();   //회원가입시 입력받은 비밀번호를 저장
          String encPassword = bCryptPasswordEncoder.encode(rawPassword); //저장한 비밀번호를 암호화
          userDTO.setUser_password(encPassword);
-        userService.insertUser(userDTO);
+         userService.insertUser(userDTO);
+         profileService.insertProfile(userDTO.getUser_id());
        return "redirect:/";
     }
 
@@ -144,7 +147,7 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
     public ResponseEntity nameUpdate(@RequestBody Map<String,String> name, @AuthenticationPrincipal PrincipalDetails principalDetails) {
 
         if(userService.selectUserName(name.get("name"))==null) {
-            Map<String, String> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>();
             map.put("name", name.get("name"));
             map.put("email", principalDetails.getDto().getUser_email());
             userService.updateName(map);
@@ -166,12 +169,111 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
             map.put("email1", email.get("email"));
             map.put("email2", principalDetails.getDto().getUser_email());
             userService.updateEmail(map);
+            principalDetails.getDto().setUser_email(email.get("email"));
 
             return ResponseEntity.status(HttpStatus.OK).body("");
         }else {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
         }
     }
+
+    //비밀번호 변경
+
+    @PostMapping("/user/passwordUpdate")
+    @ResponseBody
+    public ResponseEntity passwordUpdate(@RequestBody Map<String,String> password, @AuthenticationPrincipal PrincipalDetails principalDetails) {
+
+        if(userService.selectUserEmail(password.get("password"))==null) {
+            Map<String, String> map = new HashMap<>();
+            map.put("password", password.get("password"));
+            map.put("email", principalDetails.getDto().getUser_email());
+            userService.updatePassword(map);
+
+            return ResponseEntity.status(HttpStatus.OK).body("");
+        }else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("");
+        }
+    }
+
+//    @PostMapping("/user/profile/nameUpdate")
+//    public String nameUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestBody Map<String,String> name) {
+//       Map<String,Object> map = new HashMap<>();
+//       map.put("name",name.get("name"));
+//       map.put("email",principalDetails.getDto().getUser_email());
+//       map.put("userid",principalDetails.getDto().getUser_id());
+//      userService.updateName(map);
+//      profileService.updateName(map);
+//
+//        return null;
+//    }
+
+    @PostMapping("/user/profile/nameUpdate")
+    public String nameUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("nameInput") String name) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("name",name);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+        userService.updateName(map);
+        profileService.updateName(map);
+        principalDetails.getDto().setUser_name(name);
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/serviceUpdate")
+    public String serviceUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("serviceInput") String service) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("service",service);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+        profileService.updateService(map);
+
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/introduceUpdate")
+    public String introduceUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("introduceInput") String introduce) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("introduce",introduce);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+        profileService.updateIntroduce(map);
+
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/addressUpdate")
+    public String addressUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("addressInput") String address) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("address",address);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+        
+        profileService.updateAddress(map);
+
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/timeUpdate")
+    public String timeUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam(value = "timeRange", required = true) String time) {
+        Map<String,Object> map = new HashMap<>();
+        map.put("time",time);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+
+        profileService.updateTime(map);
+
+
+        return "redirect:/user/profile";
+    }
+
 
     @GetMapping("/auth/login")
     public String login(@RequestParam(value = "error", required = false) String error,
