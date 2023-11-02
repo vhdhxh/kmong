@@ -261,7 +261,8 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
     }
 
     @PostMapping("/user/profile/timeUpdate")
-    public String timeUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam(value = "timeRange", required = true) String time) {
+    public String timeUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("timeRange") String time) {
+        System.out.println(time);
         Map<String,Object> map = new HashMap<>();
         map.put("time",time);
         map.put("email",principalDetails.getDto().getUser_email());
@@ -273,6 +274,38 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
 
         return "redirect:/user/profile";
     }
+
+    @PostMapping("/user/profile/deployeeUpdate")
+    public String deployeeUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("deployee") String deployee) {
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("deployee",deployee);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+
+        profileService.updateDeployee(map);
+
+
+        return "redirect:/user/profile";
+    }
+
+    @PostMapping("/user/profile/detailUpdate")
+    public String detailUpdate(@AuthenticationPrincipal PrincipalDetails principalDetails,@RequestParam("detail") String detail) {
+
+        Map<String,Object> map = new HashMap<>();
+        map.put("detail",detail);
+        map.put("email",principalDetails.getDto().getUser_email());
+        map.put("userid",principalDetails.getDto().getUser_id());
+
+
+        profileService.updateDetail(map);
+
+
+        return "redirect:/user/profile";
+    }
+
+
 
 
     @GetMapping("/auth/login")

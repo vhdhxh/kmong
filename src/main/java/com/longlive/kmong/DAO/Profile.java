@@ -14,4 +14,6 @@ public interface Profile {
     void updateIntroduce(Map<String,Object> map);
     void updateAddress(Map<String,Object> map);
     void updateTime(Map<String,Object> map);
+    void updateDeployee(Map<String,Object> map);
+    void updateDetail(Map<String,Object> map);
 }

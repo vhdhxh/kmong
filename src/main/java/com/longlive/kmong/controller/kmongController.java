@@ -1,9 +1,9 @@
 package com.longlive.kmong.controller;
 
 import com.longlive.kmong.DAO.Profile;
-import com.longlive.kmong.DTO.ProfileDTO;
-import com.longlive.kmong.DTO.UserDTO;
+import com.longlive.kmong.DTO.*;
 import com.longlive.kmong.config.auth.PrincipalDetails;
+import com.longlive.kmong.service.BoardService;
 import com.longlive.kmong.service.ProfileService;
 import com.longlive.kmong.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +13,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 @RequiredArgsConstructor
@@ -21,10 +23,16 @@ public class kmongController {
 
    private final ProfileService profileService;
    private final UserService userService;
-
+    private final BoardService boardService;
     @GetMapping("/")
-    public String main (@AuthenticationPrincipal PrincipalDetails principalDetails , Model model,Authentication authentication) {
-
+    public String main (@ModelAttribute("params")  SearchDto params,Model model) {
+        PagingResponse<BoardListDto> response = boardService.findAllPost(params);
+        System.out.println(params.getPage());
+        System.out.println(params.getPageSize());
+        System.out.println(params.getRecordSize());
+        model.addAttribute("response", response);
+        System.out.println("page:"+response.getPagination());
+        System.out.println(response.getList());
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
 //        if (principalDetails != null && principalDetails.getDto() != null) {
@@ -63,6 +71,17 @@ public String profile(@AuthenticationPrincipal PrincipalDetails principalDetails
     ProfileDTO profileDTO = profileService.selectProfile(principalDetails.getDto().getUser_id());
         model.addAttribute("profile",profileDTO);
         return "profile";
+    }
+
+@GetMapping("/write")
+public String write() {
+        return "write";
+}
+
+    @GetMapping("/board/{board_id}")
+    public String detail(@PathVariable String board_id) {
+
+ return "boarddetail";
     }
 
 @GetMapping("/uploadtest")

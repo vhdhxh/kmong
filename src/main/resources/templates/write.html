@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      layout:decorate="~{fragments/layout}" xmlns:layout="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//cdn.ckeditor.com/4.19.0/full/ckeditor.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+<body layout:fragment="content">
+<script>
+$(function () {
+	CKEDITOR.replace('contents', {
+		imageUploadUrl : '/file-upload2'
+	});
+});
+
+function displayImage() {
+  var fileInput = document.getElementById('thumbnail');
+  var previewImg = document.getElementById('preview');
+
+  if (fileInput.files && fileInput.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      previewImg.src = e.target.result;
+    }
+
+    reader.readAsDataURL(fileInput.files[0]);
+  }
+}
+
+</script>
+<img id="preview" src="" alt="Preview Image">
+<form id="writeForm" enctype="multipart/form-data">
+<input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()">
+<div>가격 :<input type="text" id="price" name="price"></div>
+<div>제목 :<input type="text" id="title" name="title"></div>
+<textarea id="contents" name="contents"></textarea>
+    <button type="submit">글쓰기</button>
+</form>
+
+<script>
+    const form = document.getElementById('writeForm');
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const thumbnail = document.getElementById('thumbnail').files[0];
+  const price = document.getElementById('price').value;
+  const title = document.getElementById('title').value;
+  const contents = CKEDITOR.instances.contents.getData();
+
+  const formData = new FormData();
+  formData.append('thumbnail', thumbnail);
+  formData.append('price', price);
+  formData.append('title', title);
+  formData.append('contents', contents);
+
+  fetch('/api/board', {
+    method: 'POST',
+    body: formData
+  })
+    .then(response => response.json())
+    .then(data => {
+      // 요청에 대한 응답 처리
+      window.location.href = "/map"
+      console.log(data);
+    })
+    .catch(error => {
+      // 오류 처리
+      console.error(error);
+    });
+});
+</script>
+</body>
+</html>

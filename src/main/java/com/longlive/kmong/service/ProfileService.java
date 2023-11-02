@@ -38,4 +38,11 @@ public class ProfileService {
     public void updateTime(Map<String,Object> map) {
         profile.updateTime(map);
     }
+
+    public void updateDeployee(Map<String,Object> map) {
+        profile.updateDeployee(map);
+    }
+    public void updateDetail(Map<String,Object> map) {
+        profile.updateDetail(map);
+    }
 }

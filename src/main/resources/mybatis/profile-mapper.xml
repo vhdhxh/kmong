@@ -50,7 +50,23 @@
     <update id="updateTime" parameterType="Map">
         update profile set
         profile_time = #{time}
-        where user_id = # {userid}
+        where user_id = #{userid}
 
     </update>
+
+<!--    프로필 직원수 변경-->
+    <update id="updateDeployee" parameterType="Map">
+        update profile set
+        profile_deployee = #{deployee}
+        where user_id = #{userid}
+    </update>
+
+<!--        프로필 상세설명 변경-->
+    <update id="updateDetail" parameterType="Map">
+        update profile set
+        profile_detail = #{detail}
+        where user_id = #{userid}
+    </update>
+
+
  </mapper>
