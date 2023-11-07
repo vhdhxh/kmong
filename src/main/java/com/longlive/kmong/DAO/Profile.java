@@ -16,4 +16,6 @@ public interface Profile {
     void updateTime(Map<String,Object> map);
     void updateDeployee(Map<String,Object> map);
     void updateDetail(Map<String,Object> map);
+
+    String getProfileId(String boardId);
 }

@@ -19,7 +19,7 @@
         #{board_price},
         #{user_Id}
         )
-        <selectKey resultType="Long" keyProperty="boardId" keyColumn="board_id" order="AFTER">
+        <selectKey resultType="Long" keyProperty="board_Id" keyColumn="board_id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
 
@@ -58,11 +58,37 @@
     </select>
 <!--    게시글상세보기-->
     <select id="findPost" parameterType="String" resultType="com.longlive.kmong.DTO.BoardDTO">
-        select *
+        select
+        b.board_id,b.board_contents,b.board_title,b.board_createtime,b.board_thumbnail,b.board_price, b.user_Id,a.user_name as board_writer
+        from
+        board b , user a
+        where b.user_id = a.user_id
+        and b.board_id = #{board_id}
+
+
+    </select>
+
+<!--    게시글 수정-->
+    <update id="updatePost" parameterType="com.longlive.kmong.DTO.BoardDTO">
+        update board set
+        board_title = #{board_title},
+        board_thumbnail = #{board_thumbnail},
+        board_contents = #{board_contents},
+        board_price = #{board_price}
+        where board_id = #{board_Id}
+    </update>
+
+<!--    게시글 삭제-->
+    <delete id="deletePost" parameterType="String">
+        DELETE FROM board WHERE board_Id = #{board_id}
+    </delete>
+
+<!--    주문 불러오기-->
+    <select id="getOrder" parameterType="String" resultType="com.longlive.kmong.DTO.ItemDto">
+        select board_title as productName,board_price as productPrice
         from
         board
-        where board_id = #{board_id}
-
+        where board_id = #{id}
 
     </select>
 </mapper>

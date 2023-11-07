@@ -2,6 +2,7 @@ package com.longlive.kmong.DAO;
 
 import com.longlive.kmong.DTO.BoardDTO;
 import com.longlive.kmong.DTO.BoardListDto;
+import com.longlive.kmong.DTO.ItemDto;
 import com.longlive.kmong.DTO.SearchDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -15,6 +16,14 @@ public interface Board {
     int count(SearchDto params);
 
     BoardDTO findPost(String boardId);
+
+    void deletePost(String boardId);
+
+    void updatePost(BoardDTO boardDTO);
+
+    ItemDto getOrder(String id);
+
+
 }
 
 

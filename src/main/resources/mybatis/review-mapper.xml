@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.longlive.kmong.DAO.Review">
+    <insert id="insertReview" parameterType="com.longlive.kmong.DTO.ReviewDto">
+        INSERT INTO review
+        (review_Id,
+        user_Id,
+        board_Id,
+        profile_Id,
+        review_contents,
+        review_rating
+        )
+        values (
+        null,
+        #{userId},
+        #{boardId},
+        #{profileId},
+        #{reviewContents},
+        #{rating}
+        )
+    </insert>
+</mapper>

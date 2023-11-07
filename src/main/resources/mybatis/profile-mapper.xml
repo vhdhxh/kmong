@@ -68,5 +68,17 @@
         where user_id = #{userid}
     </update>
 
+    <select id="getProfileId" parameterType="String" resultType="String">
+        select
+        profile_Id
+        from
+        profile
+        where user_Id = (
+        select
+        user_id
+        from board
+        where board_id = #{boardId})
+    </select>
+
 
  </mapper>

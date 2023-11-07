@@ -33,14 +33,17 @@ function displayImage() {
 </script>
 <img id="preview" src="" alt="Preview Image">
 <form id="writeForm" enctype="multipart/form-data">
-<input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()">
-<div>가격 :<input type="text" id="price" name="price"></div>
-<div>제목 :<input type="text" id="title" name="title"></div>
-<textarea id="contents" name="contents"></textarea>
+    <input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()" th:value="${board.board_thumbnail}">
+    <div>가격 :<input type="text" id="price" name="price" th:value="${board.board_price}"></div>
+    <div>제목 :<input type="text" id="title" name="title" th:value="${board.board_title}"></div>
+    <textarea id="contents" name="contents" th:text="${board.board_contents}"></textarea>
     <button type="submit">글쓰기</button>
 </form>
 
-<script>
+<script th:inline="javascript">
+const baseUrl = window.location.pathname;   //posts    //posts/novel
+var id = baseUrl.replace("/board/update/", "");
+
     const form = document.getElementById('writeForm');
 form.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -50,20 +53,22 @@ form.addEventListener('submit', (e) => {
   const title = document.getElementById('title').value;
   const contents = CKEDITOR.instances.contents.getData();
 
+
+
   const formData = new FormData();
   formData.append('thumbnail', thumbnail);
   formData.append('board_price', price);
   formData.append('board_title', title);
   formData.append('board_contents', contents);
 
-  fetch('/api/board', {
+  fetch('/api/board/'+id, {
     method: 'POST',
     body: formData
   })
     .then(response => response.json())
     .then(data => {
       // 요청에 대한 응답 처리
-      window.location.href = "/board/"+data
+     window.location.replace('/board/'+data);
       console.log(data);
     })
     .catch(error => {

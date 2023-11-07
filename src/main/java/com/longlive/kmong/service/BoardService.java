@@ -36,4 +36,21 @@ public class BoardService {
     public BoardDTO findPost(String boardId) {
         return board.findPost(boardId);
     }
+
+    public void deletePost(String boardId) {
+        board.deletePost(boardId);
+
+    }
+
+    public void updatePost(BoardDTO boardDTO) {
+        board.updatePost(boardDTO);
+    }
+
+    public ItemDto getOrder(String id) {
+        return board.getOrder(id);
+
+    }
+
+
+
 }

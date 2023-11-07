@@ -45,4 +45,8 @@ public class ProfileService {
     public void updateDetail(Map<String,Object> map) {
         profile.updateDetail(map);
     }
+
+    public String getProfileId(String boardId) {
+        return profile.getProfileId(boardId);
+    }
 }

@@ -27,12 +27,8 @@ public class kmongController {
     @GetMapping("/")
     public String main (@ModelAttribute("params")  SearchDto params,Model model) {
         PagingResponse<BoardListDto> response = boardService.findAllPost(params);
-        System.out.println(params.getPage());
-        System.out.println(params.getPageSize());
-        System.out.println(params.getRecordSize());
         model.addAttribute("response", response);
-        System.out.println("page:"+response.getPagination());
-        System.out.println(response.getList());
+
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
 //        if (principalDetails != null && principalDetails.getDto() != null) {
@@ -70,18 +66,35 @@ public String accountupdate() {
 public String profile(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
     ProfileDTO profileDTO = profileService.selectProfile(principalDetails.getDto().getUser_id());
         model.addAttribute("profile",profileDTO);
-        return "profile";
+        return "userprofile";
     }
 
-@GetMapping("/write")
+@GetMapping("/board/write")
 public String write() {
         return "write";
 }
 
-    @GetMapping("/board/{board_id}")
-    public String detail(@PathVariable String board_id) {
+@GetMapping("/board/{board_id}")
+public String detail(@PathVariable String board_id) {
 
  return "boarddetail";
+    }
+
+    @GetMapping("/board/update/{board_id}")
+    public String update(@PathVariable String board_id, Model model) {
+
+        model.addAttribute("board",boardService.findPost(board_id));
+        return "update";
+    }
+
+    @GetMapping("/order/{id}")
+    public String order(@ModelAttribute("params") ItemDto itemDto) {
+
+        return "payments";
+    }
+    @GetMapping("/user/order")
+    public String getOrder() {
+        return "order";
     }
 
 @GetMapping("/uploadtest")

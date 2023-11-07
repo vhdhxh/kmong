@@ -9,12 +9,13 @@ import java.time.LocalDateTime;
 @Builder
 public class BoardDTO {
     private Long board_Id;
-    private String board_contents;
     private String board_title;
+    private String board_contents;
     private String board_thumbnail;
     private String board_price;
     private Long user_Id;
-    private LocalDateTime board_createtime;
+    private String board_createtime;
+    private String board_writer;
 
 
 

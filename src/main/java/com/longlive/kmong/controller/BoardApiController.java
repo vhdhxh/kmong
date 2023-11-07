@@ -52,6 +52,30 @@ public class BoardApiController {
            BoardDTO boardDTO = boardService.findPost(board_id);
           return ResponseEntity.status(HttpStatus.OK).body(boardDTO);
         }
+
+         /*
+    판매글수정
+     */
+      @PostMapping("/{board_id}")
+      public ResponseEntity update(@RequestPart("thumbnail") MultipartFile file,@PathVariable Long board_id,BoardDTO boardDTO) {
+          String fileName = fileUploadService.upload(file);
+          System.out.println(boardDTO);
+          boardDTO.setBoard_thumbnail(fileName);
+          boardDTO.setBoard_Id(board_id);
+            boardService.updatePost(boardDTO);
+
+          return ResponseEntity.status(HttpStatus.OK).body(board_id);
+      }
+
+        /*
+    판매글삭제
+     */
+    @DeleteMapping("/{board_id}")
+    public ResponseEntity delete(@PathVariable String board_id) {
+        boardService.deletePost(board_id);
+        return ResponseEntity.status(HttpStatus.OK).body("");
+    }
+
 //        /*
 //        판매글 수정
 //         */
