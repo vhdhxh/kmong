@@ -57,7 +57,7 @@ function addList(chat, active){
     <a id="room${chat.roomId}" href="/chat/${chat.roomId}/${chat.otherNickname}">
         <div class="chat_list ${active}">
             <div class="chat_people">
-                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_img"> <img src="/resources/user/${chat.userImage}" alt="sunil"> </div>
                 <div class="chat_ib">
                     <h5>${chat.otherNickname}<span class="chat_date">${chat.recentTime}</span></h5>
                     <p class="chat_message">${chat.recentMessage}</p>

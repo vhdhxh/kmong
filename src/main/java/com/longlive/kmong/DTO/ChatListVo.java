@@ -8,4 +8,5 @@ public class ChatListVo {
     private String otherNickname;
     private String recentMessage;
     private String recentTime;
+    private String userImage;
 }

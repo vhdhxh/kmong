@@ -11,4 +11,5 @@ public class UserOrderDto {
     private String orderName;
     private String orderPrice;
     private Long orderStatus;
+    private Long boardId;
 }

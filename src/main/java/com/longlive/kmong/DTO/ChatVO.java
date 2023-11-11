@@ -13,6 +13,7 @@ public class ChatVO {
     private String senderNickname;
     private String message;
     private String sendTime;
+    private String userImage;
 
     @Getter
     @ToString

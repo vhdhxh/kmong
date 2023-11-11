@@ -118,33 +118,57 @@ if(result) {
                  *    기존에는 게시글 번호를 (전체 데이터 수 - loop의 인덱스 번호)로 처리했으나, 현재는 (전체 데이터 수 - ((현재 페이지 번호 - 1) * 페이지당 출력할 데이터 개수))로 정밀히 계산
                  */
                 list.forEach(row => {
+
+<!--                $.ajax({-->
+<!--    url: "/api/user/"+row.orderId,-->
+<!--    type: "Get",-->
+<!--    success: function(response) {-->
+<!--        // 서버로부터의 응답 처리-->
+<!--        console.log(response);-->
+<!--        // 필요한 로직 추가-->
+<!--        boardId = response.boardId;-->
+<!--        profileId = response.profileId;-->
+<!--        console.log(boardId);-->
+<!--        console.log(profileId);-->
+<!--    },-->
+<!--    error: function(error) {-->
+<!--        // 에러 처리-->
+<!--        console.log(error);-->
+<!--        // 필요한 로직 추가-->
+<!--    }-->
+<!--});-->
+
+
+
                 if(row.orderStatus===0) {
                     html += `
                     <tr>
                         <td>${row.orderId}</td>
                         <td>${row.orderTime}</td>
-                        <td>${row.orderName}</td>
+                        <td><a href="/board/${row.boardId}">${row.orderName}</a></td>
                         <td>${row.orderPrice}</td>
                         <td><button class="btn btn-primary" onclick="confirmOrder(${row.orderId})">구매확정</button></td>
 
                     </tr>
                     `;
                     } if(row.orderStatus===1) {
+
                       html += `
                     <tr>
                         <td>${row.orderId}</td>
                         <td>${row.orderTime}</td>
-                        <td>${row.orderName}</td>
+                        <td><a href="/board/${row.boardId}">${row.orderName}</a></td>
                         <td>${row.orderPrice}</td>
                         <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-orderid="${row.orderId}">리뷰쓰기</button></td>
                     </tr>
                     `;
+                    console.log(boardId);
                     } if(row.orderStatus===2) {
                       html += `
                     <tr>
                         <td>${row.orderId}</td>
                         <td>${row.orderTime}</td>
-                        <td>${row.orderName}</td>
+                        <td><a href="/board/${row.boardId}">${row.orderName}</a></td>
                         <td>${row.orderPrice}</td>
                         <td></td>
                     </tr>

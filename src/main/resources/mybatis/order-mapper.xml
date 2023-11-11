@@ -21,7 +21,7 @@
 </insert>
 
     <select id="getOrder" parameterType="Long" resultType="com.longlive.kmong.DTO.UserOrderDto">
-        select o.order_Id as orderId , o.createtime as orderTime, b.board_title as orderName,o.order_price as orderPrice , o.order_status as orderStatus
+        select o.order_Id as orderId , o.createtime as orderTime, b.board_title as orderName,o.order_price as orderPrice , o.order_status as orderStatus ,b.board_Id as boardId
         from orders o , board b
         where o.board_Id = b.board_Id
         and o.user_Id = #{userId}

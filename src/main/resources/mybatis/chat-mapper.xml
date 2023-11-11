@@ -58,7 +58,7 @@
 
 </insert>
 <select id="selectChatRoom" resultType="com.longlive.kmong.DTO.ChatVO">
-    SELECT m.room_Id as roomId, u1.user_name AS receiverNickname, u2.user_name AS senderNickname , message_content as message , send_Date as sendTime
+    SELECT m.room_Id as roomId, u1.user_name AS receiverNickname, u2.user_name AS senderNickname , message_content as message , send_Date as sendTime , u2.user_image as userImage
     FROM message m
     JOIN user u1 ON m.receiver_id = u1.user_id
     JOIN user u2 ON m.sender_id = u2.user_id
@@ -83,6 +83,7 @@
 <!--    )-->
 
     SELECT m.room_Id AS roomId,
+    CASE WHEN m.sender_Id = #{userId} THEN u.user_image ELSE sender.user_Image END AS  userImage,
     CASE WHEN m.sender_Id = #{userId} THEN u.user_name ELSE sender.user_name END AS otherNickname,
     m.message_content AS recentMessage,
     m.send_date AS recentTime

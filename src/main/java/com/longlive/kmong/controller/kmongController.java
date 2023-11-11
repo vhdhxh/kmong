@@ -26,9 +26,11 @@ public class kmongController {
     private final BoardService boardService;
     @GetMapping("/")
     public String main (@ModelAttribute("params")  SearchDto params,Model model) {
+        System.out.println(boardService.findAllPost(params).getPagination());
+        System.out.println(boardService.findAllPost(params).getList());
         PagingResponse<BoardListDto> response = boardService.findAllPost(params);
         model.addAttribute("response", response);
-
+        System.out.println(response);
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
 //        if (principalDetails != null && principalDetails.getDto() != null) {
@@ -95,6 +97,11 @@ public String detail(@PathVariable String board_id) {
     @GetMapping("/user/order")
     public String getOrder() {
         return "order";
+    }
+
+    @GetMapping("/profile/{userid}")
+    public String profile() {
+        return "profile";
     }
 
 @GetMapping("/uploadtest")

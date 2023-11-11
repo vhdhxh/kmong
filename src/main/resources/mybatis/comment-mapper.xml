@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<!--댓글 작성-->
+<mapper namespace="com.longlive.kmong.DAO.Comment">
+    <insert id="writeComment" parameterType="com.longlive.kmong.DTO.CommentWriteDto">
+    INSERT INTO comment
+    (comment_Id,
+     board_Id,
+        user_Id,
+        comment_contents
+
+    )
+    values (
+    null,
+    #{boardId},
+    #{userId},
+        #{contents}
+
+
+        )
+    </insert>
+
+<!--    대댓글 작성-->
+    <insert id="writeReply" parameterType="com.longlive.kmong.DTO.ReplyWriteDto">
+        INSERT INTO comment
+        (comment_Id,
+        board_Id,
+        user_Id,
+        comment_contents,
+        comment_depth,
+        comment_rid
+
+        )
+        values (
+        null,
+        #{boardId},
+        #{userId},
+        #{contents},
+        1,
+        #{commentRid})
+    </insert>
+
+<!--    </insert>-->
+
+<!--    댓글 불러오기-->
+    <select id="getCommentList" parameterType="Long" resultType="com.longlive.kmong.DTO.CommentListDto">
+        select c.comment_depth as commentDepth, c.comment_Rid as commentRid, c.comment_createtime as commentCreateTime, u.user_name as commentWriter, c.comment_contents as commentContents ,c.comment_Id as commentId,c.board_Id as boardId , comment_status as status  from comment c, user u
+        where c.board_Id = #{boardId} and u.user_Id = c.user_Id;
+
+    </select>
+
+<!--    대댓글 불러오기-->
+<select id="getReplyList" parameterType="com.longlive.kmong.DTO.ReplyDto" resultType="com.longlive.kmong.DTO.ReplyListDto">
+    select c.comment_createtime as commentCreateTime, u.user_name as commentWriter, c.comment_contents as commentContents from comment c, user u
+    where c.board_Id = #{boardId} and u.user_Id = c.user_Id  and c.comment_Rid = #{userId}
+</select>
+
+
+
+    <update id="deleteComment" parameterType="com.longlive.kmong.DTO.CommentDto">
+        update comment set
+        comment_status = 1
+        where board_Id = #{boardId} and comment_Id = #{commentId}
+    </update>
+
+<update id="updateComment" parameterType="com.longlive.kmong.DTO.CommentDto">
+    update comment set
+    comment_contents = #{content}
+    where board_Id = #{boardId} and comment_Id = #{commentId}
+
+</update>
+
+</mapper>

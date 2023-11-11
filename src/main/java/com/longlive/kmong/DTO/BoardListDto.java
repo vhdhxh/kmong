@@ -9,4 +9,5 @@ public class BoardListDto {
     private String board_thumbnail;
     private String board_price;
 
+
 }
