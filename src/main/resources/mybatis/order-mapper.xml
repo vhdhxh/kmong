@@ -21,10 +21,15 @@
 </insert>
 
     <select id="getOrder" parameterType="Long" resultType="com.longlive.kmong.DTO.UserOrderDto">
-        select o.order_Id as orderId , o.createtime as orderTime, b.board_title as orderName,o.order_price as orderPrice , o.order_status as orderStatus ,b.board_Id as boardId
-        from orders o , board b
+<!--        select o.order_Id as orderId , o.createtime as orderTime, b.board_title as orderName,o.order_price as orderPrice , o.order_status as orderStatus ,b.board_Id as boardId-->
+<!--        from orders o , board b-->
+<!--        where o.board_Id = b.board_Id-->
+<!--        and o.user_Id = -->
+
+        select o.order_Id as orderId ,u.user_name as sellerName ,o.createtime as orderTime, b.board_title as orderName,o.order_price as orderPrice , order_status as orderStatus , b.board_Id as boardId
+        from orders o , board b,user u
         where o.board_Id = b.board_Id
-        and o.user_Id = #{userId}
+        and o.user_Id = #{userId} and b.user_Id = u.user_Id;
     </select>
 
     <update id="updateStatus" parameterType="Long">
@@ -44,6 +49,13 @@
         from orders
         where order_id = #{orderId}
 
+    </select>
+
+<!--    판매목록-->
+    <select id="mySales" parameterType="Long" resultType="com.longlive.kmong.DTO.mySalesDto">
+        select o.order_Id , u.user_name as buyerName, o.order_price,b.board_title,o.createtime,o.order_status
+        from orders o ,board b,user u
+        where b.user_Id = #{userId} and o.board_Id = b.board_Id and o.user_Id = u.user_Id;
     </select>
 
 </mapper>

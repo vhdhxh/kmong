@@ -10,6 +10,8 @@ public class UserOrderDto {
     private String orderTime;
     private String orderName;
     private String orderPrice;
+    private String sellerName;
     private Long orderStatus;
     private Long boardId;
+
 }

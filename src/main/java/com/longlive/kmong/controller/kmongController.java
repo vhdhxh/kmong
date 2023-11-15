@@ -104,6 +104,15 @@ public String detail(@PathVariable String board_id) {
         return "profile";
     }
 
+    @GetMapping("/user/myBoards")
+    public String myBoards() {return "myBoards";}
+
+    @GetMapping("/user/myComments")
+    public String myComments() {return "myComments";}
+
+    @GetMapping("/user/mySales")
+    public String mySales() {return "mySales";}
+
 @GetMapping("/uploadtest")
     public String uploadtest() {
         return "uploadtest";

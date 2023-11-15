@@ -91,4 +91,8 @@
         where board_id = #{id}
 
     </select>
+<!--    내가쓴 게시글-->
+    <select id="myBoards" parameterType="Long" resultType="com.longlive.kmong.DTO.myBoardsDto">
+        select board_Id , board_createTime, board_title , board_price from board where user_Id = #{userId};
+    </select>
 </mapper>

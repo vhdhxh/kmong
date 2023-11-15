@@ -3,6 +3,7 @@ package com.longlive.kmong.service;
 import com.longlive.kmong.DAO.Order;
 import com.longlive.kmong.DTO.PaymentsRequestDto;
 import com.longlive.kmong.DTO.UserOrderDto;
+import com.longlive.kmong.DTO.mySalesDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -33,5 +34,9 @@ public class OrderService {
 
     public void updateStatus2(Long orderId) {
         order.updateStatus2(orderId);
+    }
+
+    public List<mySalesDto> mySales(Long userId) {
+        return order.mySales(userId);
     }
 }

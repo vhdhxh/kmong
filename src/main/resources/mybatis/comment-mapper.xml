@@ -71,5 +71,9 @@
     where board_Id = #{boardId} and comment_Id = #{commentId}
 
 </update>
+<!--    내가 쓴 댓글-->
+    <select id="myComments" parameterType="Long" resultType="com.longlive.kmong.DTO.myCommentsDto">
+        select comment_Id , comment_createTime, comment_contents ,b.board_title as boardTitle from comment c , board b where c.user_Id = #{userId} and c.board_Id = b.board_Id;
+    </select>
 
 </mapper>

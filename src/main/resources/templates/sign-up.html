@@ -25,9 +25,14 @@
     }).open();
     }
 </script>
+
 <div class="d-flex justify-content-center">
+
     <form method="post" action="/register">
         <div class="mb-3">
+            <div id="signup">
+                <h2>회원가입</h2>
+            </div>
             <label for="email" class="form-label">이메일</label>
             <input name="user_email" type="email" class="form-control" id="email" placeholder="example@soomgo.com" th:value="${userDTO.user_email}">
             <div th:text="${valid_user_email}" class="valid-message" style="color:red;"></div>
@@ -38,7 +43,7 @@
             <div th:text="${valid_user_password}" class="valid-message" style="color:red;"></div>
         </div>
         <div class="mb-3">
-            <label for= "name"class= "form-label">이름</label>
+            <label for= "name"class= "form-label">이름(활동명)</label>
             <input name="user_name" type= "text"class= "form-control"id= "name"placeholder= "이름을 입력해주세요" th:value="${userDTO.user_name}">
             <div th:text="${valid_user_name}" class="valid-message" style="color:red;"></div>
         </div>

@@ -2,6 +2,7 @@ package com.longlive.kmong.DAO;
 
 import com.longlive.kmong.DTO.PaymentsRequestDto;
 import com.longlive.kmong.DTO.UserOrderDto;
+import com.longlive.kmong.DTO.mySalesDto;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface Order {
     String getboardId(String orderId);
 
     void updateStatus2(Long orderId);
+
+    public List<mySalesDto> mySales(Long userId);
 }

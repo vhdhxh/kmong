@@ -20,4 +20,6 @@ public interface Comment {
     void deleteComment(CommentDto commentDto);
 
     void updateComment(CommentDto commentDto);
+
+    List<myCommentsDto> myComments(Long userId);
 }

@@ -102,7 +102,16 @@ nav > ul > li.has_sub > a::after, .menu_toggle > span,
 .paging .last::after {background-position:-49px 0; width:12px; margin-left:-6px;}
 .paging .prev, .paging .last {margin-left:-1px;}
 
-
+#keyword {
+ margin:auto;
+    width:45%;
+    max-width:430px;
+    border:2px solid #8C8C8C;
+    border-radius:20px;
+    padding:0.5em 1em;
+    background-color:white;
+    text-align:left;
+}
     </style>
 
     <script>
@@ -213,10 +222,11 @@ function go() {
                             <p class="card-text">${row.board_title}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>-->
+<!--                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>-->
+<span>${row.board_price}원</span>
                                 </div>
-                                <small class="text-body-secondary">9 mins</small>
+                                <small class="text-body-secondary"></small>
                             </div>
                         </div>
                     </div>
@@ -320,14 +330,14 @@ function yourFunctionName() {
 
 
 
-<div>이건 메인에서 만들었고</div>
-<div onclick="goChat(123)" class="num">123과 채팅하기</div>
-<div onclick="goChat('aa')" class="eng">aa와 채팅하기</div>
+<!--<div>이건 메인에서 만들었고</div>-->
+<!--<div onclick="goChat(123)" class="num">123과 채팅하기</div>-->
+<!--<div onclick="goChat('aa')" class="eng">aa와 채팅하기</div>-->
 
 </div>
 <!--<input type="hidden" sec:authorize="isAuthenticated()" class="loginMemberNickname" th:value="${#authentication.getPrincipal().member.nickname}">- -->
 <input type="hidden" sec:authorize="isAuthenticated()" class="loginMemberNickname" th:value="${#authentication.getPrincipal().dto.user_name}">
-<input type="text" onclick="go()">
+<!--<input type="text" onclick="go()">-->
 <!--<input type="hidden" sec:authorize="isAuthenticated()" class="loginMemberNickname" th:value="${user.user_name}">-->
 </div>
 
@@ -335,14 +345,15 @@ function yourFunctionName() {
 
 <main>
 
-    <section class="py-5 text-center container">
+    <section class="py-5 text-center" style="background-image: url('img/banner.jpg');background-size: cover;width: 100%; margin: 0; padding: 0;">
+
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Album example</h1>
-                <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>
+<!--                <h1 class="fw-light">Album example</h1>-->
+<!--                <p class="lead text-body-secondary">Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don’t simply skip over it entirely.</p>-->
                 <p>
-                    <a href="#" class="btn btn-primary my-2">Main call to action</a>
-                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>
+<!--                    <a href="#" class="btn btn-primary my-2">Main call to action</a>-->
+<!--                    <a href="#" class="btn btn-secondary my-2">Secondary action</a>-->
                     <input type="text" id="keyword" name="keyword" placeholder="키워드를 입력해 주세요." title="키워드 입력" onkeyup="handleKeyPress(event)"/>
 
                 </p>

@@ -35,4 +35,8 @@ public class CommentService {
     public void updateComment(CommentDto commentDto) {
         comment.updateComment(commentDto);
     }
+
+    public List<myCommentsDto> myComments(Long userId) {
+       return comment.myComments(userId);
+    }
 }

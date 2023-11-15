@@ -52,5 +52,7 @@ public class BoardService {
     }
 
 
-
+    public  List<myBoardsDto> myBoards(Long userId) {
+        return board.myBoards(userId);
+    }
 }

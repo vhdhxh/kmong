@@ -1,9 +1,6 @@
 package com.longlive.kmong.DAO;
 
-import com.longlive.kmong.DTO.BoardDTO;
-import com.longlive.kmong.DTO.BoardListDto;
-import com.longlive.kmong.DTO.ItemDto;
-import com.longlive.kmong.DTO.SearchDto;
+import com.longlive.kmong.DTO.*;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -24,6 +21,7 @@ public interface Board {
     ItemDto getOrder(String id);
 
 
+    List<myBoardsDto> myBoards(Long userId);
 }
 
 

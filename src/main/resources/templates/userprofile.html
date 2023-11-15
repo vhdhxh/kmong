@@ -157,7 +157,7 @@ select::-ms-expand {
                                                     <input type="text" class="form-control" id="introduceInput" name="introduceInput" th:value="${profile?.profile_introduce}">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-secondary" type="button" onclick="return save3()">수정</button>
-                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm()">취소</button>
+                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm3()">취소</button>
                                                     </div>
                                                 </div>
                                                 <small class="form-text text-muted">클릭하여 수정</small>
@@ -250,7 +250,7 @@ select::-ms-expand {
                                                         <option value="오후 12시">오후 12:00시</option>
                                                     </select>
                                                     <button class="btn btn-outline-secondary" type="button" onclick="return save5()">수정</button>
-                                                    <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm()">취소</button>
+                                                    <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm5()">취소</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -285,7 +285,7 @@ select::-ms-expand {
                                                     </div>
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-secondary" type="button" onclick="save6()">수정</button>
-                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm()">취소</button>
+                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm6()">취소</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -306,7 +306,7 @@ select::-ms-expand {
                                                     <input type="text" class="form-control" name="detail"  th:value="${profile?.profile_detail}">
                                                     <div class="input-group-append">
                                                         <button class="btn btn-outline-secondary" type="button" onclick="save7()">수정</button>
-                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm()">취소</button>
+                                                        <button class="btn btn-outline-secondary" type="button" onclick="hideEditForm7()">취소</button>
                                                     </div>
                                                 </div>
                                             </div>
@@ -473,8 +473,16 @@ function update() {
 	return false;
 }
 
+
+
  nameInput.setAttribute('name', 'nameInput');
 document.getElementById('nameForm').submit();
+    }
+
+    function hideEditForm() {
+      document.getElementById("nameDiv").style.display = "block";
+      document.getElementById("save").style.display = "none";
+
     }
 
     function update2() {
@@ -495,8 +503,15 @@ document.getElementById('nameForm').submit();
 	return false;
 }
 
+
  serviceInput.setAttribute('service', 'serviceInput');
 document.getElementById('serviceForm').submit();
+    }
+
+    function hideEditForm2() {
+      document.getElementById("serviceDiv").style.display = "block";
+      document.getElementById("save2").style.display = "none";
+
     }
 
      function update3() {
@@ -518,6 +533,12 @@ document.getElementById('serviceForm').submit();
 }
 
 document.getElementById('introduceForm').submit();
+    }
+
+    function hideEditForm3() {
+       document.getElementById("introduceDiv").style.display = "block";
+      document.getElementById("save3").style.display = "none";
+
     }
 
     function api() {
@@ -569,6 +590,12 @@ document.getElementById('timeForm').submit();
 
     }
 
+    function hideEditForm5() {
+       document.getElementById("timeDiv").style.display = "block";
+      document.getElementById("save5").style.display = "none";
+
+    }
+
     function update6() {
 <!--      document.getElementById("update6").style.display = "none";-->
        document.getElementById("deployeeDiv").style.display = "none";
@@ -590,6 +617,12 @@ document.getElementById('timeForm').submit();
    var deployeeInput = document.getElementById("deployee");
   deployeeInput.value = deployee;
   document.getElementById('deployeeForm').submit();
+    }
+
+function hideEditForm6() {
+       document.getElementById("deployeeDiv").style.display = "block";
+      document.getElementById("save6").style.display = "none";
+
     }
 
     function update7() {
@@ -637,6 +670,14 @@ document.getElementById('timeForm').submit();
            console.log(previewDiv);
            previewDiv.src = "/resources/user/" + url;
         }
+
+        function hideEditForm7() {
+       document.getElementById("detailDiv").style.display = "block";
+      document.getElementById("save7").style.display = "none";
+
+    }
+
+
 
 </script>
 </body>
