@@ -8,6 +8,9 @@ import com.longlive.kmong.DTO.SmsResponseDto;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.codec.binary.Base64;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -32,23 +35,24 @@ import java.util.Random;
 @Slf4j
 @RequiredArgsConstructor
 @Service
+@PropertySource("classpath:config.properties")
 public class SmsService {
     private final RedisUtil redisUtil;
     //휴대폰 인증 번호
     private String smsConfirmNum = createSmsKey();
 
 
+    @Value("${sms.accessKey}")
+    private String accessKey;
 
-    private String accessKey = "6eNzWHbsk2k3PhImL5W4";
+    @Value("${sms.secretKey}")
+    private String secretKey;
 
+    @Value("${sms.serviceId}")
+    private String serviceId;
 
-    private String secretKey = "T9IFn7GYiu18B1AOvuwGwUDwEGn0VHM2OWK5WUnu";
-
-
-    private String serviceId = "ncp:sms:kr:316670375653:sms_project";
-
-
-    private String phone = "01031547369";
+    @Value("${sms.phone}")
+    private String phone;
 
     public String getSignature(String time) throws NoSuchAlgorithmException, UnsupportedEncodingException, InvalidKeyException {
         String space = " ";
