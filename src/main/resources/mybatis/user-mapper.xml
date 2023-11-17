@@ -5,7 +5,7 @@
 <!--회원가입-->
 <mapper namespace="com.longlive.kmong.DAO.User">
    <insert id="insertUser" parameterType="com.longlive.kmong.DTO.UserDTO">
-       INSERT INTO USER
+       insert into user
        (user_id,
        user_email,
        user_password,

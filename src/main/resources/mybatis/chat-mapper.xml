@@ -5,7 +5,7 @@
 <!--회원가입-->
 <mapper namespace="com.longlive.kmong.DAO.Chat">
     <insert id="createRoom2">
-        INSERT INTO USER
+        INSERT INTO user
         (room_Id
         )
         values (
