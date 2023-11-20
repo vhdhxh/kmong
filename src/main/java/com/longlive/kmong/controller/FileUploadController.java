@@ -1,6 +1,6 @@
 package com.longlive.kmong.controller;
 
-import com.amazonaws.services.s3.AmazonS3Client;
+//import com.amazonaws.services.s3.AmazonS3Client;
 import com.longlive.kmong.DTO.FileUploadDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
 //import com.longlive.kmong.service.S3UploadService;
@@ -27,7 +27,7 @@ import java.util.UUID;
 public class FileUploadController {
 
     private final UserService userService;
-    private final AmazonS3Client amazonS3Client;
+//    private final AmazonS3Client amazonS3Client;
 //    private final S3UploadService s3UploadService;
     @PostMapping("/file-upload")
     public String uploadFile(@RequestPart("file") MultipartFile file ,@AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
