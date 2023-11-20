@@ -31,9 +31,9 @@ public class FileUploadController {
     private final S3UploadService s3UploadService;
     @PostMapping("/file-upload")
     public String uploadFile(@RequestPart("file") MultipartFile file ,@AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-        System.out.println(s3UploadService.saveFile(file));
+        System.out.println(s3UploadService.upload(file,"kmong"));
 
-       return s3UploadService.saveFile(file);
+       return s3UploadService.upload(file,"kmong");
 
         // 파일을 저장하고 저장된 이미지 URL을 반환하는 로직 구현
 
