@@ -44,6 +44,7 @@ public class kmongController {
 //            model.addAttribute("image", principalDetails.getDto().getUser_image());
 //        }
 
+
         return "main";
     }
     @GetMapping("/map")
