@@ -81,7 +81,7 @@
 
     <!--비밀번호변경-->
     <update id="passwordUpdate" parameterType="Map">
-        update User set
+        update user set
 
         user_password = #{password}
 
@@ -90,7 +90,7 @@
     </update>
 <!--  유저이미지변경-->
     <update id="updateImage" parameterType="Map">
-        update User set
+        update user set
 
         user_image = #{image}
 
@@ -99,7 +99,7 @@
     </update>
 <!--    유저 이름변경-->
     <update id="updateName" parameterType="Map">
-        update User set
+        update user set
         user_name = #{name}
         where user_email = #{email}
 
@@ -107,7 +107,7 @@
     </update>
 <!--    유저 이메일 변경-->
     <update id="updateEmail" parameterType="Map">
-        update User set
+        update user set
         user_email = #{email1}
         where user_email = #{email2}
 
@@ -116,7 +116,7 @@
 
 <!-- 유저 패스워드 변경 -->
     <update id="updatePassword" parameterType="Map">
-        update User set
+        update user set
         user_password = #{password}
         where user_email = #{email}
     </update>
