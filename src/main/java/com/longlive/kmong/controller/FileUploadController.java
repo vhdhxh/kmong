@@ -32,7 +32,7 @@ public class FileUploadController {
     private final S3UploadService s3UploadService;
     @PostMapping("/file-upload")
     public String uploadFile(@RequestPart("file") MultipartFile file ,@AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-
+        System.out.println(s3UploadService.saveFile(file,principalDetails));
 
        return s3UploadService.saveFile(file,principalDetails);
 
