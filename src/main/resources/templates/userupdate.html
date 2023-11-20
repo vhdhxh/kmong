@@ -205,7 +205,7 @@ select::-ms-expand {
 
                 if (result.imageUrl) {
                     showImage(result.imageUrl);
-                    window.location.reload();
+<!--                    window.location.reload();-->
                 }
             })
             .catch(error => {
@@ -216,8 +216,7 @@ select::-ms-expand {
         function showImage(url) {
            var previewDiv = document.getElementById('imagePreview');
            console.log(previewDiv);
-           console.log(url)
-           previewDiv.src = url;
+           previewDiv.src = "/resources/user/" + url;
         }
 
 
