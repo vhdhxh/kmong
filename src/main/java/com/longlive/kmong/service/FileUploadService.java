@@ -17,6 +17,7 @@ public class FileUploadService {
         String fileName = uuid + "_" + file.getOriginalFilename();
         String fileDir = "C:\\Users\\윤민수\\Downloads\\kmongimage\\"; // 프로젝트 내부의 static/img 디렉토리 경로
 
+        
         try {
             // 디렉토리 생성 (없는 경우)
             File directory = new File(fileDir);
