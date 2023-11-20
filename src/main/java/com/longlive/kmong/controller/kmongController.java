@@ -64,7 +64,7 @@ public class kmongController {
 public String myChat(@AuthenticationPrincipal PrincipalDetails principalDetails, Model model) {
     model.addAttribute("user", principalDetails.getDto());
     System.out.println(principalDetails.getDto().getUser_id());
-    return "/chat";
+    return "chat";
 
 }
 @GetMapping("/user/account-update")
