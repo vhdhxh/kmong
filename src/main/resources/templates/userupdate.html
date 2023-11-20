@@ -203,8 +203,8 @@ select::-ms-expand {
             .then(result => {
                 console.log(result); // 서버 응답 출력
 
-                if (result.imageUrl) {
-                    showImage(result.imageUrl);
+                if (result) {
+                    showImage(result);
                     window.location.reload();
                 }
             })
