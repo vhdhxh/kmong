@@ -18,6 +18,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Optional;
+import java.util.UUID;
 
 @Slf4j
 
@@ -38,7 +39,10 @@ public class S3UploadService {
         metadata.setContentLength(multipartFile.getSize());
         metadata.setContentType(multipartFile.getContentType());
 
-        amazonS3.putObject(bucket, originalFilename, multipartFile.getInputStream(), metadata);
-        return amazonS3.getUrl(bucket, originalFilename).toString();
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid.toString()+"_"+originalFilename;
+
+        amazonS3.putObject(bucket, fileName, multipartFile.getInputStream(), metadata);
+        return amazonS3.getUrl(bucket, fileName).toString();
     }
 }
