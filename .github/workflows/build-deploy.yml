@@ -8,7 +8,7 @@ on:
     
 # --------------------------추가
 env:
-  PROJECT_NAME: talentmarket
+  PROJECT_NAME: kmong
   BUCKET_NAME: ec2-myawsbucket
   CODE_DEPLOY_APP_NAME: talentmarket-code-deploy
   DEPLOYMENT_GROUP_NAME: talentmarket-server
