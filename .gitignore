@@ -20,6 +20,8 @@ bin/
 ### IntelliJ IDEA ###
 application.yml
 config.properties
+application.tar
+config.tar
 .idea
 *.iws
 *.iml
