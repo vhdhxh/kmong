@@ -25,24 +25,6 @@ jobs:
         with:
           java-version: 11
 
-      - name: Copy Secret
-        env:
-            APPLICATION_SECRET: ${{ secrets.APPLICATION_SECRET }}
-            OCCUPY_SECRET_DIR: src/main/resources
-            OCCUPY_SECRET_TEST_DIR: src/test/resources
-            OCCUPY_SECRET_DIR_FILE_NAME: application.yml
-        run: echo $APPLICATION_SECRET | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_DIR_FILE_NAME &&
-            echo $APPLICATION_SECRET | base64 --decode > $OCCUPY_SECRET_TEST_DIR/$OCCUPY_SECRET_DIR_FILE_NAME
-
-      - name: Copy Secret2
-        env:
-            CONFIG_SECRET: ${{ secrets.CONFIG_SECRET }}
-            OCCUPY_SECRET_DIR: src/main/resources
-            OCCUPY_SECRET_TEST_DIR: src/test/resources
-            OCCUPY_SECRET_DIR_FILE_NAME: config.properties
-        run: echo $CONFIG_SECRET | base64 --decode > $OCCUPY_SECRET_DIR/$OCCUPY_SECRET_DIR_FILE_NAME &&
-                echo $CONFIG_SECRET | base64 --decode > $OCCUPY_SECRET_TEST_DIR/$OCCUPY_SECRET_DIR_FILE_NAME
-
       - name: Permission for gradlew
         run: chmod +x ./gradlew
         shell: bash
