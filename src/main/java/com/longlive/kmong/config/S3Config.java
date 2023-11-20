@@ -20,9 +20,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class S3Config {
 
 
-
-
-
     @Value("${s3.accessKey}")
     private String accessKey;
 
