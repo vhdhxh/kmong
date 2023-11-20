@@ -93,7 +93,7 @@ select::-ms-expand {
                             <div class="card">
                                 <div class="card-body">
                                     <div class="text-center mb-4">
-                                        <img class="rounded-circle" id="imagePreview" th:src="'/resources/user/'+${#authentication.getPrincipal().dto.user_image}" style="width:85px;height:85px;">
+                                        <img class="rounded-circle" id="imagePreview" th:src="'https://ec2-myawsbucket.s3.ap-northeast-2.amazonaws.com/image/'+${#authentication.getPrincipal().dto.user_image}" style="width:85px;height:85px;">
                                         <label for="fileInput">
                                             <div class="btn-upload">프로필 변경</div>
                                         </label>

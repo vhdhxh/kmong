@@ -40,7 +40,7 @@ public class S3UploadService {
         metadata.setContentType(multipartFile.getContentType());
 
         UUID uuid = UUID.randomUUID();
-        String fileName = uuid.toString()+"_"+originalFilename;
+        String fileName = "image/"+uuid.toString()+"_"+originalFilename;
 
         amazonS3.putObject(bucket, fileName, multipartFile.getInputStream(), metadata);
         return amazonS3.getUrl(bucket, fileName).toString();
