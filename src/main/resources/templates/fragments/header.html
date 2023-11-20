@@ -18,7 +18,7 @@
           </li>
 
           <li class="nav-item">
-                  <img class="nav-link" href="" sec:authorize="isAuthenticated()" th:src="https://ec2-myawsbucket.s3.ap-northeast-2.amazonaws.com/image/'+${#authentication.getPrincipal().dto.user_image}" alt="img" style="height:45px"></img>
+                  <img class="nav-link" href="" sec:authorize="isAuthenticated()" th:src="'https://ec2-myawsbucket.s3.ap-northeast-2.amazonaws.com/image/'+${#authentication.getPrincipal().dto.user_image}" alt="img" style="height:45px"></img>
                 </li>
 
                 <li class="nav-item dropdown">
