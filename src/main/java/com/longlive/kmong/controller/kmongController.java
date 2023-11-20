@@ -8,6 +8,8 @@ import com.longlive.kmong.service.ProfileService;
 import com.longlive.kmong.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
@@ -19,11 +21,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 @RequiredArgsConstructor
 @Controller
+@PropertySource("classpath:config.properties")
 public class kmongController {
 
    private final ProfileService profileService;
    private final UserService userService;
     private final BoardService boardService;
+
+    @Value("s3.region")
+    String a;
     @GetMapping("/")
     public String main (@ModelAttribute("params")  SearchDto params,Model model) {
         System.out.println(boardService.findAllPost(params).getPagination());
@@ -31,6 +37,7 @@ public class kmongController {
         PagingResponse<BoardListDto> response = boardService.findAllPost(params);
         model.addAttribute("response", response);
         System.out.println(response);
+        System.out.println(a);
 //            model.addAttribute("user", principalDetails.getDto());
 //            principalDetails.getDto().getUser_name()
 //        if (principalDetails != null && principalDetails.getDto() != null) {
