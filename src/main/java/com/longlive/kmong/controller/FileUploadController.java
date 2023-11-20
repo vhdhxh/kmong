@@ -4,6 +4,7 @@ package com.longlive.kmong.controller;
 import com.longlive.kmong.DTO.FileUploadDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
 //import com.longlive.kmong.service.S3UploadService;
+import com.longlive.kmong.service.S3UploadService;
 import com.longlive.kmong.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.PropertySource;
@@ -28,42 +29,42 @@ public class FileUploadController {
 
     private final UserService userService;
 //    private final AmazonS3Client amazonS3Client;
-//    private final S3UploadService s3UploadService;
+    private final S3UploadService s3UploadService;
     @PostMapping("/file-upload")
     public String uploadFile(@RequestPart("file") MultipartFile file ,@AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
-//        System.out.println(s3UploadService.saveFile(file));
-//
-//       return s3UploadService.saveFile(file);
-//
+        System.out.println(s3UploadService.saveFile(file));
+
+       return s3UploadService.saveFile(file);
+
 //         파일을 저장하고 저장된 이미지 URL을 반환하는 로직 구현
+
+//        String fileDir = "C:\\Users\\윤민수\\Downloads\\kmongimage\\"; // 프로젝트 내부의 static/img 디렉토리 경로
+//        UUID uuid = UUID.randomUUID();
+//        String fileName = uuid.toString()+"_"+file.getOriginalFilename();
 //
-        String fileDir = "C:\\Users\\윤민수\\Downloads\\kmongimage\\"; // 프로젝트 내부의 static/img 디렉토리 경로
-        UUID uuid = UUID.randomUUID();
-        String fileName = uuid.toString()+"_"+file.getOriginalFilename();
-
-        Map<String,String> map = new HashMap<>();
-        map.put("email",principalDetails.getDto().getUser_email());
-        map.put("image",fileName);
-            userService.updateImage(map);
-           principalDetails.getDto().setUser_image(fileName);
-        try {
-            // 디렉토리 생성 (없는 경우)
-            File directory = new File(fileDir);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
-
-            // 파일 저장
-            file.transferTo(new File(fileDir + fileName));
-
-            // 이미지 URL 생성 (예: "/static/img/파일명")
-            String imageUrl = "/resources/user/" + fileName;
-
-            return "{\"imageUrl\": \"" + fileName + "\"}";
-        } catch (IOException e) {
-            e.printStackTrace();
-            return "{\"error\": \"파일 업로드 실패\"}";
-        }
+//        Map<String,String> map = new HashMap<>();
+//        map.put("email",principalDetails.getDto().getUser_email());
+//        map.put("image",fileName);
+//            userService.updateImage(map);
+//           principalDetails.getDto().setUser_image(fileName);
+//        try {
+//            // 디렉토리 생성 (없는 경우)
+//            File directory = new File(fileDir);
+//            if (!directory.exists()) {
+//                directory.mkdirs();
+//            }
+//
+//            // 파일 저장
+//            file.transferTo(new File(fileDir + fileName));
+//
+//            // 이미지 URL 생성 (예: "/static/img/파일명")
+//            String imageUrl = "/resources/user/" + fileName;
+//
+//            return "{\"imageUrl\": \"" + fileName + "\"}";
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return "{\"error\": \"파일 업로드 실패\"}";
+//        }
     }
 
 
