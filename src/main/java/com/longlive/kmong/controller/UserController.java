@@ -104,7 +104,7 @@ public @ResponseBody String testLogin(Authentication authentication //의존성�
                 System.out.println(validateMap.get(key));
             }
 
-            return "/sign-up";
+            return "sign-up";
         }
 
 
