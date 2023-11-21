@@ -7,6 +7,8 @@ import com.longlive.kmong.config.oauth.provider.GoogleUserInfo;
 import com.longlive.kmong.config.oauth.provider.KakaoUserInfo;
 import com.longlive.kmong.config.oauth.provider.NaverUserInfo;
 import com.longlive.kmong.config.oauth.provider.OAuth2UserInfo;
+import com.longlive.kmong.service.ProfileService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -18,13 +20,13 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 
 @Service
+@RequiredArgsConstructor
 public class PrincipalOauth2UserService  extends DefaultOAuth2UserService {
 
-    @Autowired
-    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    @Autowired
-    private User user;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final User user;
+    private final ProfileService profileService;
 
 
     // 구글로부터 받은 userRequest 데이터에 대한 후처리되는 메서드
@@ -76,6 +78,7 @@ public class PrincipalOauth2UserService  extends DefaultOAuth2UserService {
               .providerId(providerId)
               .build();
       user.insertUser(userEntity);
+           profileService.insertProfile(userEntity.getUser_id());
        } else {
            System.out.println("당신은 로그인 한적이 있습니다.");
        }
