@@ -56,4 +56,20 @@ public class S3UploadService {
         amazonS3.putObject(bucket, fileName2, multipartFile.getInputStream(), metadata);
         return amazonS3.getUrl(bucket, fileName2).toString();
     }
+
+    public String uploadFile(MultipartFile multipartFile) throws IOException {
+        String originalFilename = multipartFile.getOriginalFilename();
+
+        ObjectMetadata metadata = new ObjectMetadata();
+        metadata.setContentLength(multipartFile.getSize());
+        metadata.setContentType(multipartFile.getContentType());
+
+        UUID uuid = UUID.randomUUID();
+        String fileName = uuid.toString()+"_"+originalFilename;
+        String fileName2 = "image/"+fileName;
+
+
+        amazonS3.putObject(bucket, fileName2, multipartFile.getInputStream(), metadata);
+        return fileName;
+    }
 }

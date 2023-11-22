@@ -5,6 +5,7 @@ import com.longlive.kmong.DTO.BoardDTO;
 import com.longlive.kmong.config.auth.PrincipalDetails;
 import com.longlive.kmong.service.BoardService;
 import com.longlive.kmong.service.FileUploadService;
+import com.longlive.kmong.service.S3UploadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,15 +27,17 @@ public class BoardApiController {
 
     private final FileUploadService fileUploadService;
     private final BoardService boardService;
+    private final S3UploadService s3UploadService;
 
     /*
     판매글쓰기
      */
     @PostMapping("")
-        public ResponseEntity write(@RequestPart ("thumbnail") MultipartFile file, BoardDTO boardDTO, @AuthenticationPrincipal PrincipalDetails principalDetails ) {
+        public ResponseEntity write(@RequestPart ("thumbnail") MultipartFile file, BoardDTO boardDTO, @AuthenticationPrincipal PrincipalDetails principalDetails ) throws IOException {
         System.out.println(file.getOriginalFilename());
         System.out.println(boardDTO);
-      String fileName = fileUploadService.upload(file);
+//      String fileName = fileUploadService.upload(file);
+        String fileName = s3UploadService.uploadFile(file);
         System.out.println(fileName);
       boardDTO.setBoard_thumbnail(fileName);
       boardDTO.setUser_Id(principalDetails.getDto().getUser_id());
