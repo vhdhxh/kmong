@@ -12,8 +12,8 @@ const myNickname = document.querySelector(".loginMemberNickname").value;
 let temp = window.location.pathname.replace("/chat/", "").split('/');
 const roomId = temp[0];
 const yourNickname = temp[1];
-
-let sock = new SockJS(`http://${location.host}/chat/stomp-chatting`);
+//${location.host}/chat/stomp-chatting`);
+let sock = new SockJS(`https://www.talentmarket.store/chat/stomp-chatting`);
 
 let client = Stomp.over(sock);
 ws = client;
