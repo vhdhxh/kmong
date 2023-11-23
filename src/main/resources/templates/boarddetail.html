@@ -63,7 +63,7 @@ function loadPost(){
 
 function replacePost(post){
     document.querySelector("#title").innerHTML = post.board_title;
-    document.querySelector("#price").innerHTML = post.board_price
+    document.querySelector("#price").innerHTML = post.board_price + "원";
     document.querySelector("#contents").innerHTML = post.board_contents;
       name = post.board_title;
       price = post.board_price;
@@ -71,7 +71,7 @@ function replacePost(post){
 
      var previewDiv = document.getElementById('thumbnail');
            console.log(previewDiv);
-           previewDiv.src = "/resources/user/"+post.board_thumbnail;
+           previewDiv.src = "https://ec2-myawsbucket.s3.ap-northeast-2.amazonaws.com/image/"+post.board_thumbnail;
 
 let myNicknameElement = document.querySelector(".loginMemberNickname").value;
 let updateButtonElement = document.querySelector("#updateButton");
@@ -531,7 +531,7 @@ function updateComment(commentId, event){
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8">
-      <img src="" alt="tumbnail" id="thumbnail" style="width:730px;height:450px">
+      <img src="" alt="tumbnail" id="thumbnail" style="width:817px;height:450px">
       <div class="card">
         <div class="card-header">
           <h2 id="title">게시글 제목</h2>
@@ -561,98 +561,98 @@ function updateComment(commentId, event){
 
         </div>
 
-        <div class=" mt-2">
-          <div class="card-body" style="position: relative;">
-            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>
-            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>
-            <div style="position: absolute; right: 10px; top: 10px;">
-              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>
+<!--        <div class=" mt-2">-->
+<!--          <div class="card-body" style="position: relative;">-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>-->
+<!--            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>-->
+<!--            <div style="position: absolute; right: 10px; top: 10px;">-->
+<!--              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>-->
 
-              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>
-            </div>
-          </div>
-        </div>
-
-
-        <div style="margin-left: 40px;">
-          <div class=" mt-2">
-            <div class="card-body" style="position: relative;">
-              <h6 class="card-subtitle mb-2 text-muted">대댓글 작성자: 창선 | 작성일: 2023-11-03</h6>
-              <p class="card-text">대댓글 내용이 들어가는 부분입니다.</p>
-              <div style="position: absolute; right: 10px; top: 10px;">
-
-                <button type="button" class="btn btn-warning btn-sm" onclick="updateReply()">수정</button>
-                <button type="button" class="btn btn-danger btn-sm" onclick="deleteReply()">삭제</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- 답글 버튼을 누르면 이곳에 생기게 -->
-          <form class="mt-2">
-            <div class="form-group">
-              <textarea class="form-control" rows="2" placeholder="대댓글을 입력하세요."></textarea>
-            </div>
-            <button type="submit" class="btn btn-secondary btn-sm">대댓글 작성</button>
-          </form>
-
-        </div>
+<!--              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>-->
+<!--              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
 
+<!--        <div style="margin-left: 40px;">-->
+<!--          <div class=" mt-2">-->
+<!--            <div class="card-body" style="position: relative;">-->
+<!--              <h6 class="card-subtitle mb-2 text-muted">대댓글 작성자: 창선 | 작성일: 2023-11-03</h6>-->
+<!--              <p class="card-text">대댓글 내용이 들어가는 부분입니다.</p>-->
+<!--              <div style="position: absolute; right: 10px; top: 10px;">-->
 
-        <div class=" mt-2">
-          <div class="card-body" style="position: relative;">
-            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>
-            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>
-            <div style="position: absolute; right: 10px; top: 10px;">
-              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>
-              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>
-            </div>
-          </div>
-        </div>
+<!--                <button type="button" class="btn btn-warning btn-sm" onclick="updateReply()">수정</button>-->
+<!--                <button type="button" class="btn btn-danger btn-sm" onclick="deleteReply()">삭제</button>-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
 
+<!--          &lt;!&ndash; 답글 버튼을 누르면 이곳에 생기게 &ndash;&gt;-->
+<!--          <form class="mt-2">-->
+<!--            <div class="form-group">-->
+<!--              <textarea class="form-control" rows="2" placeholder="대댓글을 입력하세요."></textarea>-->
+<!--            </div>-->
+<!--            <button type="submit" class="btn btn-secondary btn-sm">대댓글 작성</button>-->
+<!--          </form>-->
 
-        <div class=" mt-2">
-          <div class="card-body" style="position: relative;">
-            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>
-            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>
-            <div style="position: absolute; right: 10px; top: 10px;">
-              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>
-
-              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>
-            </div>
-          </div>
-        </div>
+<!--        </div>-->
 
 
-        <div class=" mt-2">
-          <div class="card-body" style="position: relative;">
-            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>
-            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>
-            <div style="position: absolute; right: 10px; top: 10px;">
-              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>
 
-              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>
-            </div>
-          </div>
-        </div>
+<!--        <div class=" mt-2">-->
+<!--          <div class="card-body" style="position: relative;">-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>-->
+<!--            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>-->
+<!--            <div style="position: absolute; right: 10px; top: 10px;">-->
+<!--              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>-->
+<!--              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>-->
+<!--              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
 
-        <div class=" mt-2">
-          <div class="card-body" style="position: relative;">
-            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>
-            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>
-            <div style="position: absolute; right: 10px; top: 10px;">
-              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>
+<!--        <div class=" mt-2">-->
+<!--          <div class="card-body" style="position: relative;">-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>-->
+<!--            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>-->
+<!--            <div style="position: absolute; right: 10px; top: 10px;">-->
+<!--              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>-->
 
-              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>
-              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>
-            </div>
-          </div>
-        </div>
+<!--              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>-->
+<!--              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+<!--        <div class=" mt-2">-->
+<!--          <div class="card-body" style="position: relative;">-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>-->
+<!--            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>-->
+<!--            <div style="position: absolute; right: 10px; top: 10px;">-->
+<!--              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>-->
+
+<!--              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>-->
+<!--              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+
+<!--        <div class=" mt-2">-->
+<!--          <div class="card-body" style="position: relative;">-->
+<!--            <h6 class="card-subtitle mb-2 text-muted">댓글 작성자: 이몽룡 | 작성일: 2023-11-02</h6>-->
+<!--            <p class="card-text">댓글 내용이 들어가는 부분입니다.</p>-->
+<!--            <div style="position: absolute; right: 10px; top: 10px;">-->
+<!--              <button type="button" class="btn btn-sm" onclick="updateComment()">답글</button>-->
+
+<!--              <button type="button" class="btn btn-warning btn-sm" onclick="updateComment()">수정</button>-->
+<!--              <button type="button" class="btn btn-danger btn-sm" onclick="deleteComment()">삭제</button>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
 
 
 
@@ -668,7 +668,9 @@ function updateComment(commentId, event){
           <h4>가격 정보</h4>
         </div>
         <div class="card-body">
+          <p id="detail">상품 요약</p>
           <p class="card-text" id="price">₩10,000</p>
+
           <button type="button" class="btn btn-primary btn-block" th:onclick="Chat()">문의하기</button>
           <button type="button" class="btn btn-success btn-block" onclick="payments()">결제하기</button>
         </div>

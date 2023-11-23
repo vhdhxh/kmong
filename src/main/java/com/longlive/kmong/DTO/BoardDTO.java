@@ -16,6 +16,7 @@ public class BoardDTO {
     private Long user_Id;
     private String board_createtime;
     private String board_writer;
+    private String board_detail;
 
 
 

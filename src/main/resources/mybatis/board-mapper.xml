@@ -6,6 +6,7 @@
         (board_Id,
         board_title,
         board_contents,
+        board_detail,
         board_thumbnail,
         board_price,
         user_Id
@@ -15,6 +16,7 @@
         null,
         #{board_title},
         #{board_contents},
+        #{board_detail},
         #{board_thumbnail},
         #{board_price},
         #{user_Id}
@@ -59,7 +61,7 @@
 <!--    게시글상세보기-->
     <select id="findPost" parameterType="String" resultType="com.longlive.kmong.DTO.BoardDTO">
         select
-        b.board_id,b.board_contents,b.board_title,b.board_createtime,b.board_thumbnail,b.board_price, b.user_Id,a.user_name as board_writer
+        b.board_id,b.board_detail,b.board_contents,b.board_title,b.board_createtime,b.board_thumbnail,b.board_price, b.user_Id,a.user_name as board_writer
         from
         board b , user a
         where b.user_id = a.user_id
@@ -85,7 +87,7 @@
 
 <!--    주문 불러오기-->
     <select id="getOrder" parameterType="String" resultType="com.longlive.kmong.DTO.ItemDto">
-        select board_title as productName,board_price as productPrice
+        select board_title as productName,board_price as productPrice, board_detail as productDetail
         from
         board
         where board_id = #{id}

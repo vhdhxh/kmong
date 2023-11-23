@@ -36,6 +36,7 @@ function displayImage() {
 <input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()">
 <div>가격 :<input type="text" id="price" name="price"></div>
 <div>제목 :<input type="text" id="title" name="title"></div>
+    <div>상품요약 :<input type="text" id="detail" name="detail"></div>
 <textarea id="contents" name="contents"></textarea>
     <button type="submit">글쓰기</button>
 </form>
@@ -48,12 +49,14 @@ form.addEventListener('submit', (e) => {
   const thumbnail = document.getElementById('thumbnail').files[0];
   const price = document.getElementById('price').value;
   const title = document.getElementById('title').value;
+  const title = document.getElementById('detail').value;
   const contents = CKEDITOR.instances.contents.getData();
 
   const formData = new FormData();
   formData.append('thumbnail', thumbnail);
   formData.append('board_price', price);
   formData.append('board_title', title);
+  formData.append('board_detail', detail);
   formData.append('board_contents', contents);
 
   fetch('/api/board', {

@@ -7,5 +7,6 @@ public class ItemDto {
 
     private String productName;
     private String productPrice;
+    private String productDetail;
 
 }

@@ -73,6 +73,7 @@ window.onload = function() {
 function replacePost(post){
     document.querySelector("#title").innerHTML = post.productName;
     document.querySelector("#price").innerHTML = post.productPrice;
+    document.querySelector("#detail").innerHTML = post.productDetail;
     price = post.productPrice;
 }
 
@@ -199,8 +200,9 @@ function onPaymentButtonClicked() {
         <div class="card-body">
           <h5 class="card-title">주문 상품</h5>
           <p class="card-text"><strong>상품명:</strong> <span id="title">[숨고 특별혜택전] 에어팟 리퍼 서비스</span></p>
-          <p class="card-text"><strong>상품 옵션:</strong> 에어팟 2세대 양쪽 유닛 리퍼(보증금 30000원 포함가)</p>
-          <p class="card-text"><strong>상세 내용:</strong> 에어팟 2세대 양쪽 유닛 리퍼 상품입니다. 119,000원은 보증금 30,000원 포함가입니다. 고객님께서 현재 사용 중인 에어팟 외관 등급을 숨고 '리팟' 카카오톡 채널로 알려주세요~! 에어팟 2세대의 경우는 우선배송 서비스를 진행하고 있습니다. 따라서 '리팟' 카카오톡 채널로 고객님이 에어팟 1세대를 받으시고자 하시는 주소와 휴대폰 번호 그리고 추후 보증금 환불 받으실 계좌번호를 알려주세요! 양쪽 프로 1세대 유닛 리퍼 서비스 가격은 89,000원입니다. 우선배송 보증금(30,000) 포함 시 119,000원 보증금은 리팟에게 에어팟을 받으신 봉투에 기존 사용하던 에어팟을 넣어서 반송해주시면 에어팟 검수 후 보증금(30,000원) 계좌로 환불해드립니다.</p>
+<!--          <p class="card-text"><strong>상품 옵션:</strong> 에어팟 2세대 양쪽 유닛 리퍼(보증금 30000원 포함가)</p>-->
+<!--          <p class="card-text"><strong>상세 내용:</strong> 에어팟 2세대 양쪽 유닛 리퍼 상품입니다. 119,000원은 보증금 30,000원 포함가입니다. 고객님께서 현재 사용 중인 에어팟 외관 등급을 숨고 '리팟' 카카오톡 채널로 알려주세요~! 에어팟 2세대의 경우는 우선배송 서비스를 진행하고 있습니다. 따라서 '리팟' 카카오톡 채널로 고객님이 에어팟 1세대를 받으시고자 하시는 주소와 휴대폰 번호 그리고 추후 보증금 환불 받으실 계좌번호를 알려주세요! 양쪽 프로 1세대 유닛 리퍼 서비스 가격은 89,000원입니다. 우선배송 보증금(30,000) 포함 시 119,000원 보증금은 리팟에게 에어팟을 받으신 봉투에 기존 사용하던 에어팟을 넣어서 반송해주시면 에어팟 검수 후 보증금(30,000원) 계좌로 환불해드립니다.</p>-->
+          <p class="card-text"><strong>상품 내용:</strong> <span id="detail"></span></p>
           <p class="card-text"><strong>상품 가격:</strong> <span id="price"></span></p>
           <hr>
           <h5 class="card-title">결제 정보 입력</h5>

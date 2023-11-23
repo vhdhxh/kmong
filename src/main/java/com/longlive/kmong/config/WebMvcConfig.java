@@ -14,7 +14,8 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     // 파일 저장할 위치
 
-    private String potoAdd = "file:C:\\Users\\윤민수\\Downloads\\kmongimage\\";
+    private String potoAdd = "https://ec2-myawsbucket.s3.ap-northeast-2.amazonaws.com/image/";
+//            "file:C:\\Users\\윤민수\\Downloads\\kmongimage\\";
     //web root가 아닌 외부 경로에 있는 리소스를 url로 불러올 수 있도록 설정
     //현재 localhost:8080/resources/user/1234.jpg
     //potoAdd에 실질적인 파일저장위치를 설정해줍니다.
