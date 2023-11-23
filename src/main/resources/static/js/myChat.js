@@ -13,7 +13,7 @@ let temp = window.location.pathname.replace("/chat/", "").split('/');
 const roomId = temp[0];
 const yourNickname = temp[1];
 //${location.host}/chat/stomp-chatting`);
-let sock = new SockJS(`http://${location.host}/chat/stomp-chatting`);
+let sock = new SockJS(`https://${location.host}/chat/stomp-chatting`);
 
 let client = Stomp.over(sock);
 ws = client;
