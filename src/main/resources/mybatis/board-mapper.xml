@@ -73,6 +73,7 @@
 <!--    게시글 수정-->
     <update id="updatePost" parameterType="com.longlive.kmong.DTO.BoardDTO">
         update board set
+        board_detail = #{board_detail},
         board_title = #{board_title},
         board_thumbnail = #{board_thumbnail},
         board_contents = #{board_contents},

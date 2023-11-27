@@ -11,7 +11,8 @@
 <script>
 $(function () {
 	CKEDITOR.replace('contents', {
-		imageUploadUrl : '/file-upload2'
+		imageUploadUrl : '/file-upload2',
+		height: 500
 	});
 });
 
@@ -30,16 +31,51 @@ function displayImage() {
   }
 }
 
+
+
 </script>
-<img id="preview" src="" alt="Preview Image">
-<form id="writeForm" enctype="multipart/form-data">
-<input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()">
-<div>가격 :<input type="text" id="price" name="price"></div>
-<div>제목 :<input type="text" id="title" name="title"></div>
-    <div>상품요약 :<input type="text" id="detail" name="detail"></div>
-<textarea id="contents" name="contents"></textarea>
-    <button type="submit">글쓰기</button>
-</form>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <img id="preview" src="" alt="Preview Image" class="img-thumbnail mb-3" style="
+    width: 850px;
+    height: 390px;">
+            <form id="writeForm" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="thumbnail">Thumbnail</label>
+                    <input type="file" class="form-control-file" id="thumbnail" name="thumbnail" onchange="displayImage()">
+                </div>
+                <div class="form-group">
+                    <label for="price">가격 </label>
+                    <input type="text" class="form-control" id="price" name="price">
+                </div>
+                <div class="form-group">
+                    <label for="title">제목 </label>
+                    <input type="text" class="form-control" id="title" name="title">
+                </div>
+                <div class="form-group">
+                    <label for="detail">상품요약 </label>
+                    <input type="text" class="form-control" id="detail" name="detail">
+                </div>
+                <div class="form-group">
+                    <label for="contents">내용 </label>
+                    <textarea class="form-control" id="contents" name="contents"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">글쓰기</button>
+            </form>
+        </div>
+    </div>
+</div>
+<!--<img id="preview" src="" alt="Preview Image">-->
+<!--<form id="writeForm" enctype="multipart/form-data">-->
+<!--<input type="file" id="thumbnail" name="thumbnail" onchange="displayImage()">-->
+<!--<div>가격 :<input type="text" id="price" name="price"></div>-->
+<!--<div>제목 :<input type="text" id="title" name="title"></div>-->
+<!--    <div>상품요약 :<input type="text" id="detail" name="detail"></div>-->
+<!--<textarea id="contents" name="contents"></textarea>-->
+<!--    <button type="submit">글쓰기</button>-->
+<!--</form>-->
 
 <script>
     const form = document.getElementById('writeForm');
@@ -51,6 +87,21 @@ form.addEventListener('submit', (e) => {
   const title = document.getElementById('title').value;
   const detail = document.getElementById('detail').value;
   const contents = CKEDITOR.instances.contents.getData();
+
+   if (!price || !title || !detail || !contents) {
+    alert('모든 항목을 채워주세요.');
+    event.preventDefault();
+    return false;
+  }
+
+  if (!/^\d+$/.test(price)) {
+    alert('가격은 숫자만 입력 가능합니다.');
+    event.preventDefault();
+    return false;
+  }
+
+  return true;
+
 
   const formData = new FormData();
   formData.append('thumbnail', thumbnail);
