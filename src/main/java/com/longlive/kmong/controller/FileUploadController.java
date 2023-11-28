@@ -70,23 +70,13 @@ public class FileUploadController {
 
     @PostMapping("/file-upload2")
     @ResponseBody
-    public FileUploadDTO uploadFile2(@RequestPart("upload") MultipartFile file , @AuthenticationPrincipal PrincipalDetails principalDetails) {
+    public FileUploadDTO uploadFile2(@RequestPart("upload") MultipartFile file , @AuthenticationPrincipal PrincipalDetails principalDetails) throws IOException {
         // 파일을 저장하고 저장된 이미지 URL을 반환하는 로직 구현
-
-        String fileDir = "C:\\Users\\윤민수\\Downloads\\kmongimage\\"; // 프로젝트 내부의 static/img 디렉토리 경로
-        String fileName = file.getOriginalFilename();
 
 
         try {
-            // 디렉토리 생성 (없는 경우)
-            File directory = new File(fileDir);
-            if (!directory.exists()) {
-                directory.mkdirs();
-            }
 
-            // 파일 저장
-            file.transferTo(new File(fileDir + fileName));
-
+            String fileName = s3UploadService.saveFile(file,principalDetails);
             // 이미지 URL 생성 (예: "/static/img/파일명")
             String imageUrl = "/resources/user/" + fileName;
 
@@ -95,6 +85,28 @@ public class FileUploadController {
             e.printStackTrace();
             return null;
         }
+//        String fileDir = "C:\\Users\\윤민수\\Downloads\\kmongimage\\"; // 프로젝트 내부의 static/img 디렉토리 경로
+//        String fileName = file.getOriginalFilename();
+//
+//
+//        try {
+//            // 디렉토리 생성 (없는 경우)
+//            File directory = new File(fileDir);
+//            if (!directory.exists()) {
+//                directory.mkdirs();
+//            }
+//
+//            // 파일 저장
+//            file.transferTo(new File(fileDir + fileName));
+//
+//            // 이미지 URL 생성 (예: "/static/img/파일명")
+//            String imageUrl = "/resources/user/" + fileName;
+//
+//            return FileUploadDTO.builder().uploaded(true).fileName(fileName).url(imageUrl).build();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//            return null;
+//        }
     }
 
 }
