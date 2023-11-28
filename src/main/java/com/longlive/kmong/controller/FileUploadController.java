@@ -76,7 +76,7 @@ public class FileUploadController {
 
         try {
 
-            String fileName = s3UploadService.saveFile(file,principalDetails);
+            String fileName = s3UploadService.uploadFile(file);
             // 이미지 URL 생성 (예: "/static/img/파일명")
             String imageUrl = "/resources/user/" + fileName;
 
