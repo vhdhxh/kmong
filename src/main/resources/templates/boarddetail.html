@@ -65,6 +65,7 @@ function replacePost(post){
     document.querySelector("#title").innerHTML = post.board_title;
     document.querySelector("#price").innerHTML = post.board_price + "원";
     document.querySelector("#contents").innerHTML = post.board_contents;
+     document.querySelector("#detail").innerHTML = post.board_detail;
       name = post.board_title;
       price = post.board_price;
       writer = post.board_writer;
@@ -531,7 +532,7 @@ function updateComment(commentId, event){
 <div class="container mt-4">
   <div class="row">
     <div class="col-md-8">
-      <img src="" alt="tumbnail" id="thumbnail" style="width:817px;height:450px">
+      <img src="" alt="tumbnail" id="thumbnail" style="width:730px;height:450px">
       <div class="card">
         <div class="card-header">
           <h2 id="title"></h2>

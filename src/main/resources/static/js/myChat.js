@@ -111,7 +111,9 @@ function sendView(message, time){
 function receive(senderNickname, message, time,userImage){
     $(".msg_history").append(`
         <div class="incoming_msg">
-            <div class="incoming_msg_img"> <img src="/resources/user/${userImage}" alt="sunil"> </div>
+           <!-- <div class="incoming_msg_img"> <img src="/resources/user/${userImage}" alt="sunil"> </div>-->
+             <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+
             <div class="received_msg">
                 <div class="receiver">${senderNickname}</div>
                 <div class="received_withd_msg">
