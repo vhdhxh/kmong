@@ -62,34 +62,72 @@
 </head>
 <body layout:fragment="content">
 
-<form method="post" action="/sms/pwfind">
-    <div class="form-row">
-        <label for="email">이메일:</label>
-        <input type="text" id="email" name="user_email" required>
-    </div>
+<div class="container">
+    <h2>비밀번호 찾기</h2>
+    <form method="post" action="/sms/pwfind">
+        <div class="form-group">
+            <label for="email">이메일:</label>
+            <input type="text" id="email" name="user_email" class="form-control" required>
+        </div>
 
-    <div class="form-row">
-        <label for="name">이름:</label>
-        <input type="text" id="name" name="name" required>
-    </div>
+        <div class="form-group">
+            <label for="name">이름:</label>
+            <input type="text" id="name" name="name" class="form-control" required>
+        </div>
 
-    <div class= "form-row">
-        <label for= "phone">휴대폰 번호:</label>
-        <input type = "tel" id = "phone"name = "phone" required>
-        <button type ="button" onclick ="sendSms()">발송</button> <!-- 버튼 위치 변경 -->
-    </div>
+        <div class="form-group">
+            <label for="phone">휴대폰 번호:</label>
+            <div class="input-group">
+                <input type="tel" id="phone" name="phone" class="form-control" required>
+                <div class="input-group-append">
+                    <button type="button" class="btn btn-outline-secondary" onclick="sendSms()">발송</button>
+                </div>
+            </div>
+        </div>
 
-    <div class= "form-row">
-        <label for= "verificationCode">인증번호:</label>
-        <input type = "text" id = "verificationCode" name = "verificationCode">
-        <span id='timer'></span> <!-- span 태그 위치 변경 -->
-    </div>
+        <div class="form-group">
+            <label for="verificationCode">인증번호:</label>
+            <div class="input-group">
+                <input type="text" id="verificationCode" name="verificationCode" class="form-control">
+                <div class="input-group-append">
+                    <span id='timer' class="input-group-text"></span>
+                </div>
+            </div>
+        </div>
 
-    <button type ="submit" onclick ="">인증 확인</button>
-</form>
-<div th:if="${errorMessage}" class="alert alert-danger">
-    <p th:text="${errorMessage}"></p>
+        <button type="submit" class="btn btn-primary">인증 확인</button>
+    </form>
+
+    <div th:if="${errorMessage}" class="alert alert-danger mt-3">
+        <p th:text="${errorMessage}"></p>
+    </div>
 </div>
+<!--<form method="post" action="/sms/pwfind">-->
+<!--    <div class="form-row">-->
+<!--        <label for="email">이메일:</label>-->
+<!--        <input type="text" id="email" name="user_email" required>-->
+<!--    </div>-->
+
+<!--    <div class="form-row">-->
+<!--        <label for="name">이름:</label>-->
+<!--        <input type="text" id="name" name="name" required>-->
+<!--    </div>-->
+
+<!--    <div class= "form-row">-->
+<!--        <label for= "phone">휴대폰 번호:</label>-->
+<!--        <input type = "tel" id = "phone"name = "phone" required>-->
+<!--        <button type ="button" onclick ="sendSms()">발송</button> &lt;!&ndash; 버튼 위치 변경 &ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <div class= "form-row">-->
+<!--        <label for= "verificationCode">인증번호:</label>-->
+<!--        <input type = "text" id = "verificationCode" name = "verificationCode">-->
+<!--        <span id='timer'></span> &lt;!&ndash; span 태그 위치 변경 &ndash;&gt;-->
+<!--    </div>-->
+
+<!--    <button type ="submit" onclick ="">인증 확인</button>-->
+<!--</form>-->
+
 <script>
     var x; // 전역 변수 추가
 

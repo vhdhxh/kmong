@@ -34,6 +34,11 @@ public class SecurityConfig  {
                 .antMatchers("/user/**").authenticated()
                 .antMatchers("/manager/**").access("hasRole('ROLE_ADMIN') or hasRole('ROLE_MANAGER')")
                 .antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
+                .antMatchers("/write").authenticated()
+                .antMatchers("/update").authenticated()
+                .antMatchers("/chat/**").authenticated()
+                .antMatchers("/chat").authenticated()
+                .antMatchers("/order/**").authenticated()
                 .anyRequest().permitAll()  //이외의 url은 허가한다
                 .and()
                 // 로그인 설정
